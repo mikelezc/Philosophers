@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 19:15:27 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/02/26 11:33:30 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/02/27 12:32:11 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@
 # define ERR_T_EAT	"ERROR: incorrect time to eat\n"
 # define ERR_T_SLP	"ERROR: incorrect time to sleep\n"
 # define ERR_N_EAT	"ERROR: incorrect nbr of times each philosopher must eat\n"
-# define ERR_INT_M	"ERROR: maximum int is the limit (2147483647)"
+# define ERR_INT_M	"ERROR: incorrect max int. (limit is 2147483647)"
 
+//limits
 # define PHILO_MAX 300
 # define INT_MAX __INT_MAX__
 
@@ -49,6 +50,7 @@
 
 
 //philo(main)
+int		ph_is_nbr(char *arg);
 int		ph_args_philter(char **argv);
 
 //errors
