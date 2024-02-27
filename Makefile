@@ -6,7 +6,7 @@
 #    By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/25 18:59:24 by mlezcano          #+#    #+#              #
-#    Updated: 2024/02/25 21:19:24 by mlezcano         ###   ########.fr        #
+#    Updated: 2024/02/27 12:56:50 by mlezcano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ WHITE		=	\033[0;97m
 PHILO_DIR	=	philo/
 
 #src files
-PHILO_FILES	=	philo errors
+PHILO_FILES	=	philo utils
 
 SRC_FILES	=	$(addprefix $(PHILO_DIR), $(PHILO_FILES))
 

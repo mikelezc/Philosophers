@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 19:15:27 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/02/27 12:32:11 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/02/27 13:07:53 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,15 @@
 
 //error message macros
 # define ERR_ARG	"ERROR: incorrect number of arguments\n"
+
 # define ERR_PHI	"ERROR: incorrect number of philosophers\n"
 # define ERR_T_DIE	"ERROR: incorrect time to die\n"
 # define ERR_T_EAT	"ERROR: incorrect time to eat\n"
 # define ERR_T_SLP	"ERROR: incorrect time to sleep\n"
 # define ERR_N_EAT	"ERROR: incorrect nbr of times each philosopher must eat\n"
+
 # define ERR_INT_M	"ERROR: incorrect max int. (limit is 2147483647)"
+# define ERR_ALLOC	"ERROR: incorrect memory allocation with malloc"
 
 //limits
 # define PHILO_MAX 300
@@ -53,8 +56,11 @@
 int		ph_is_nbr(char *arg);
 int		ph_args_philter(char **argv);
 
-//errors
-int		ft_atoi(const char *str);
+//utils
+void	*ph_super_malloc(size_t len);
+int		ph_atoi(const char *str);
 void	ph_error_exit(const char *msg);
+
+//program
 
 #endif
