@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 19:15:27 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/02/27 13:07:53 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/02/27 13:36:25 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int		ph_args_philter(char **argv);
 //utils
 void	*ph_super_malloc(size_t len);
 int		ph_atoi(const char *str);
-void	ph_error_exit(const char *msg);
+int		ph_error_exit(const char *msg);
 
 //program
 
