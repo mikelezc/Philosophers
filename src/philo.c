@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 19:25:11 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/02/27 13:39:16 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/02/27 14:17:04 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ argv[5]number_of_times_each_philosopher_must_eat (optional)
 
 int	ph_args_philter(char **argv)
 {
-	if (ph_atoi(argv[1]) > PHILO_MAX || ph_atoi(argv[1]) <= 0
-		|| !(ph_is_nbr(argv[1])))
+	if (ph_atoi(argv[1]) <= 0 || !(ph_is_nbr(argv[1]))
+		|| ph_atoi(argv[1]) > PHILO_MAX)
 		return (ph_error_exit(ERR_PHI));
 	if (ph_atoi(argv[2]) <= 0 || !(ph_is_nbr(argv[2])))
 		return (ph_error_exit(ERR_T_DIE));

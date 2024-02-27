@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 21:19:34 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/02/27 14:08:43 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/02/27 14:14:37 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ph_atoi(const char *str)
 	if (nbr > INT_MAX)
 	{
 		ph_error_exit(ERR_INT_M);
-		return (-1);
+		return (0);
 	}
 	return (nbr * sign);
 }
