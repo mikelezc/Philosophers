@@ -6,7 +6,7 @@
 #    By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/25 18:59:24 by mlezcano          #+#    #+#              #
-#    Updated: 2024/02/27 12:56:50 by mlezcano         ###   ########.fr        #
+#    Updated: 2024/02/28 17:52:00 by mlezcano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,28 +47,26 @@ WHITE		=	\033[0;97m
 PHILO_DIR	=	philo/
 
 #src files
-PHILO_FILES	=	philo utils
+PHILO_FILES	=	philo utils table monitor routine_actions threads
 
 SRC_FILES	=	$(addprefix $(PHILO_DIR), $(PHILO_FILES))
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
 
-COMMON 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(COM_FILES)))
-COBJ 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(COM_FILES)))
-
 OBJF		=	.cache_exists
 
 start:
-			@$(ECHO) -n "$(GREEN)[Dependencies]:\t$(DEF_COLOR)"
+			@$(ECHO) -n "$(GREEN)[Philo]:\t$(DEF_COLOR)"
 			@$(ECHO) -n "$(GREEN)[$(DEF_COLOR)"
 			@make all
 
 all:		$(NAME)
 
-$(NAME):	$(OBJ) $(COBJ) $(OBJF)
+$(NAME):	$(OBJ) $(OBJF)
 			@$(ECHO) -n "$(GREEN)]$(DEF_COLOR)"
-			@$(ECHO) -n "$(GREEN) => OK! $(DEF_COLOR)\n"
+			@$(ECHO) -n "$(GREEN) => OK! 🤓 🍽️ $(DEF_COLOR)\n"
+			@$(CC) $(CFLAGS) $(OBJ) $(HEADER) -o $(NAME)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(OBJF)
 			@$(ECHO) -n "$(DEF_COLOR)=$(DEF_COLOR)"
@@ -81,18 +79,17 @@ $(OBJF):
 
 clean:
 			@$(RM) -r $(OBJ_DIR)
-			@make clean -C $(LIBFT)
-			@$(ECHO) -n "$(RED)[philo]:\tobject files$(DEF_COLOR)$(YELLOW)  => Clean! 🚽$(DEF_COLOR)\n"
+			@$(ECHO) -n "$(RED)[Cleaning...]:\tobject files$(DEF_COLOR)$(YELLOW)  => Clean! 🚽$(DEF_COLOR)\n"
 			@$(RM) $(OBJF)
 
 fclean:		clean
 			@$(RM) $(NAME)
 			@rm -rf *.dSYM
 			@find . -name ".DS_Store" -delete
-			@$(ECHO) -n "$(RED)[philo]:\texec. files$(DEF_COLOR)$(YELLOW)  => Clean! 🚽$(DEF_COLOR)\n"
+			@$(ECHO) -n "$(RED)[Cleaning...]:\texec. files$(DEF_COLOR)$(YELLOW)  => Clean! 🚽$(DEF_COLOR)\n"
 
 
 re:			fclean all
-			@$(ECHO) -n "$(GREEN)Cleaned and rebuilt everything for [philo]! 🙌🙌🙌$(DEF_COLOR)\n"
+			@$(ECHO) -n "$(GREEN)Everything cleaned and rebuilt for [philo]! 🙌🙌🙌$(DEF_COLOR)\n"
 
 .PHONY:		all clean fclean re

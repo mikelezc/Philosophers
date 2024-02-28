@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 19:25:11 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/02/27 14:17:04 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/02/28 17:49:26 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ argv[5]number_of_times_each_philosopher_must_eat (optional)
 int	ph_args_philter(char **argv)
 {
 	if (ph_atoi(argv[1]) <= 0 || !(ph_is_nbr(argv[1]))
-		|| ph_atoi(argv[1]) > PHILO_MAX)
+		|| ph_atoi(argv[1]) > DINERS_LIM)
 		return (ph_error_exit(ERR_PHI));
 	if (ph_atoi(argv[2]) <= 0 || !(ph_is_nbr(argv[2])))
 		return (ph_error_exit(ERR_T_DIE));
@@ -50,16 +50,14 @@ int	ph_args_philter(char **argv)
 int	main(int argc, char **argv)
 {
 	t_program		program;
-	t_philo			philos[PHILO_MAX];
-	pthread_mutex_t	forks[PHILO_MAX];
+	t_philo			philos[DINERS_LIM];
+	pthread_mutex_t	forks[DINERS_LIM];
 
 	if (argc == 5 || argc == 6)
 	{
 		if (ph_args_philter(argv))
 			return (1);
-		init_program(&program, philos);
-		init_forks(forks, ph_atoi(argv[1]));
-		init_philos(philos, &program, forks, argv);
+		ph_put_table(&program, philos, forks, argv);
 		thread_create(&program, forks);
 		destory_all(NULL, &program, forks);
 	}

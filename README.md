@@ -11,3 +11,6 @@ Comienzo investigación y documentación de la nuevas funciones sugeridas por el
 	https://youtube.com/playlist?list=PLYg292oZjGzZ_vpPhy79WYf9BFqjrVqvb&si=I6MUBARIOK_JSCyx
 
 Empiezo a plantear estructura de carpetas, makefile y philo.h
+
+- 28 febrero 2024
+
