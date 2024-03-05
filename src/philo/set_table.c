@@ -1,9 +1,7 @@
 
 #include "../inc/philo.h"
 
-// Initializing the input from user
-
-void	init_input(t_philo *philo, char **argv)
+void	ph_philo_set(t_philo *philo, char **argv)
 {
 	philo->time_to_die = ph_atoi(argv[2]);
 	philo->time_to_eat = ph_atoi(argv[3]);
@@ -15,20 +13,19 @@ void	init_input(t_philo *philo, char **argv)
 		philo->num_times_to_eat = -1;
 }
 
-// Initializing the philosophers
 
-void	init_philos(t_philo *philos, t_program *program, pthread_mutex_t *forks,
-		char **argv)
+void	ph_philos_sit(t_philo *philos, t_program *program,
+pthread_mutex_t *forks, char **argv)
 {
 	int	i;
 
-	i = 0;
-	while (i < ph_atoi(argv[1]))
+	i = -1;
+	while (++i < ph_atoi(argv[1]))
 	{
 		philos[i].id = i + 1;
 		philos[i].eating = 0;
 		philos[i].meals_eaten = 0;
-		init_input(&philos[i], argv);
+		ph_philo_set(&philos[i], argv);
 		philos[i].start_time = get_current_time();
 		philos[i].last_meal = get_current_time();
 		philos[i].write_lock = &program->write_lock;
@@ -40,33 +37,21 @@ void	init_philos(t_philo *philos, t_program *program, pthread_mutex_t *forks,
 			philos[i].r_fork = &forks[philos[i].num_of_philos - 1];
 		else
 			philos[i].r_fork = &forks[i - 1];
-		i++;
 	}
 }
 
-// Initializing the forks mutexes
-
-void	init_forks(pthread_mutex_t *forks, int philo_num)
+void	ph_set_table(t_program *program, t_philo *philos,
+		pthread_mutex_t *forks, char **argv)
 {
 	int	i;
 
-	i = 0;
-	while (i < philo_num)
-	{
-		pthread_mutex_init(&forks[i], NULL);
-		i++;
-	}
-}
-
-
-void	ph_put_table(t_program *program, t_philo *philos,
-		pthread_mutex_t *forks, char **argv)
-{
+	i = -1;
 	program->dead_flag = 0;
 	program->philos = philos;
 	pthread_mutex_init(&program->write_lock, NULL);
 	pthread_mutex_init(&program->dead_lock, NULL);
 	pthread_mutex_init(&program->meal_lock, NULL);
-	init_forks(forks, ph_atoi(argv[1]));
-	init_philos(philos, program, forks, argv);
+	while (++i < ph_atoi(argv[1]))
+		pthread_mutex_init(&forks[i], NULL);
+	ph_philos_sit(philos, program, forks, argv);
 }

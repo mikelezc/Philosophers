@@ -78,7 +78,7 @@ int	check_if_all_ate(t_philo *philos)
 
 // Monitor thread routine
 
-void	*monitor(void *pointer)
+void	*ph_viewer(void *pointer)
 {
 	t_philo	*philos;
 

@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 19:25:11 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/02/28 17:49:26 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:35:05 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ int	main(int argc, char **argv)
 	{
 		if (ph_args_philter(argv))
 			return (1);
-		ph_put_table(&program, philos, forks, argv);
+		ph_set_table(&program, philos, forks, argv);
 		thread_create(&program, forks);
-		destory_all(NULL, &program, forks);
+		ph_destroy_all(NULL, &program, forks);
 	}
 	else
 		return (ph_error_exit(ERR_ARG));

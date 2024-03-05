@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 19:15:27 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/02/28 17:54:00 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/05 16:22:22 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define ERR_JOI_T	"Thread join error\n"
 
 //limits
-# define DINERS_LIM 200 /*by default...*/
+# define DINERS_LIM 300 /*by default...*/
 # define INT_MAX __INT_MAX__
 
 //structures
@@ -88,7 +88,7 @@ typedef struct s_program
 //Philo(main)
 int		ph_is_nbr(char *arg);
 int		ph_args_philter(char **argv);
-void	destory_all(char *msg, t_program *program,
+void	ph_destroy_all(char *msg, t_program *program,
 			pthread_mutex_t *forks);
 
 //Utils
@@ -98,29 +98,27 @@ size_t	get_current_time(void);
 int		ph_atoi(const char *str);
 int		ph_error_exit(const char *msg);
 
-// Table
-void	init_forks(pthread_mutex_t *forks, int philo_num);
-void	init_philos(t_philo *philos, t_program *program,
+//Set table
+void	ph_philos_sit(t_philo *philos, t_program *program,
 			pthread_mutex_t *forks, char **argv);
-void	init_input(t_philo *philo, char **argv);
-void	ph_put_table(t_program *program, t_philo *philos,
+void	ph_philo_set(t_philo *philo, char **argv);
+void	ph_set_table(t_program *program, t_philo *philos,
 			pthread_mutex_t *forks, char **argv);
 
-// Threads
-int		thread_create(t_program *program, pthread_mutex_t *forks);
-void	*monitor(void *pointer);
+//Diners
+int		dead_loop(t_philo *philo);
 void	*philo_routine(void *pointer);
+int		thread_create(t_program *program, pthread_mutex_t *forks);
+
+//p_ther
+int		check_if_all_ate(t_philo *philos);
+int		check_if_dead(t_philo *philos);
+int		philosopher_dead(t_philo *philo, size_t time_to_die);
+void	*ph_viewer(void *pointer);
 
 // Actions
 void	eat(t_philo *philo);
 void	dream(t_philo *philo);
 void	think(t_philo *philo);
-
-// Monitor utils
-int		dead_loop(t_philo *philo);
-int		check_if_all_ate(t_philo *philos);
-int		check_if_dead(t_philo *philos);
-int		philosopher_dead(t_philo *philo, size_t time_to_die);
-
 
 #endif

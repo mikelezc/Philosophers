@@ -6,7 +6,7 @@
 #    By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/25 18:59:24 by mlezcano          #+#    #+#              #
-#    Updated: 2024/02/28 17:52:00 by mlezcano         ###   ########.fr        #
+#    Updated: 2024/03/05 16:10:20 by mlezcano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ WHITE		=	\033[0;97m
 PHILO_DIR	=	philo/
 
 #src files
-PHILO_FILES	=	philo utils table monitor routine_actions threads
+PHILO_FILES	=	philo utils set_table diners p_ther routine_actions 
 
 SRC_FILES	=	$(addprefix $(PHILO_DIR), $(PHILO_FILES))
 

@@ -29,31 +29,27 @@ void	*philo_routine(void *pointer)
 	return (pointer);
 }
 
-// Creates all the threads
-
 int	thread_create(t_program *program, pthread_mutex_t *forks)
 {
-	pthread_t	observer;
+	pthread_t	p_ther;
 	int			i;
 
-	if (pthread_create(&observer, NULL, &monitor, program->philos) != 0)
-		destory_all(ERR_CRE_T, program, forks);
-	i = 0;
-	while (i < program->philos[0].num_of_philos)
+	if (pthread_create(&p_ther, NULL, &ph_viewer, program->philos) != 0)
+		ph_destroy_all(ERR_CRE_T, program, forks);
+	i = -1;
+	while (++i < program->philos[0].num_of_philos)
 	{
 		if (pthread_create(&program->philos[i].thread, NULL, &philo_routine,
 				&program->philos[i]) != 0)
-			destory_all(ERR_CRE_T, program, forks);
-		i++;
+			ph_destroy_all(ERR_CRE_T, program, forks);
 	}
-	i = 0;
-	if (pthread_join(observer, NULL) != 0)
-		destory_all(ERR_JOI_T, program, forks);
-	while (i < program->philos[0].num_of_philos)
+	i = -1;
+	if (pthread_join(p_ther, NULL) != 0)
+		ph_destroy_all(ERR_JOI_T, program, forks);
+	while (++i < program->philos[0].num_of_philos)
 	{
 		if (pthread_join(program->philos[i].thread, NULL) != 0)
-			destory_all(ERR_JOI_T, program, forks);
-		i++;
+			ph_destroy_all(ERR_JOI_T, program, forks);
 	}
 	return (0);
 }
