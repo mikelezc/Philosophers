@@ -6,15 +6,14 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 19:15:27 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/05 16:22:22 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/06 15:39:23 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef PHILO_H
 # define PHILO_H
 
-//libraries
+//Libraries
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -36,11 +35,12 @@
 # define ERR_CRE_T	"Thread creation error\n"
 # define ERR_JOI_T	"Thread join error\n"
 
-//limits
-# define DINERS_LIM 300 /*by default...*/
+//Limits
+# define TIME_LIM 60
+# define DINERS_LIM 200 /*by default...*/
 # define INT_MAX __INT_MAX__
 
-//structures
+//Structures
 typedef struct s_philo
 {
 	pthread_t		thread;
@@ -70,8 +70,7 @@ typedef struct s_program
 	t_philo			*philos;
 }					t_program;
 
-
-//colors
+//Colors
 # define RESET			"\033[0m"
 # define BLACK			"\033[30m"
 # define RED			"\033[31m"
@@ -81,9 +80,6 @@ typedef struct s_program
 # define MAGENTA		"\033[35m"
 # define CYAN			"\033[36m"
 # define WHITE			"\033[37m"
-
-//structure
-
 
 //Philo(main)
 int		ph_is_nbr(char *arg);
@@ -108,9 +104,9 @@ void	ph_set_table(t_program *program, t_philo *philos,
 //Diners
 int		dead_loop(t_philo *philo);
 void	*philo_routine(void *pointer);
-int		thread_create(t_program *program, pthread_mutex_t *forks);
+int		ph_action(t_program *program, pthread_mutex_t *forks);
 
-//p_ther
+//P_ther
 int		check_if_all_ate(t_philo *philos);
 int		check_if_dead(t_philo *philos);
 int		philosopher_dead(t_philo *philo, size_t time_to_die);

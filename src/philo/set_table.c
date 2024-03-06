@@ -6,11 +6,11 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 16:23:27 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/05 16:23:30 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/06 15:24:31 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/philo.h"
+#include "../../inc/philo.h"
 
 void	ph_philo_set(t_philo *philo, char **argv)
 {
@@ -23,7 +23,6 @@ void	ph_philo_set(t_philo *philo, char **argv)
 	else
 		philo->num_times_to_eat = -1;
 }
-
 
 void	ph_philos_sit(t_philo *philos, t_program *program,
 pthread_mutex_t *forks, char **argv)

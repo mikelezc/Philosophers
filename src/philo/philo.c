@@ -6,11 +6,11 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 19:25:11 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/05 11:35:05 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/06 15:43:54 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/philo.h"
+#include "../../inc/philo.h"
 
 int	ph_is_nbr(char *arg)
 {
@@ -36,11 +36,14 @@ int	ph_args_philter(char **argv)
 	if (ph_atoi(argv[1]) <= 0 || !(ph_is_nbr(argv[1]))
 		|| ph_atoi(argv[1]) > DINERS_LIM)
 		return (ph_error_exit(ERR_PHI));
-	if (ph_atoi(argv[2]) <= 0 || !(ph_is_nbr(argv[2])))
+	if (ph_atoi(argv[2]) <= 0 || !(ph_is_nbr(argv[2]))
+		|| ph_atoi(argv[2]) < TIME_LIM)
 		return (ph_error_exit(ERR_T_DIE));
-	if (ph_atoi(argv[3]) <= 0 || !(ph_is_nbr(argv[3])))
+	if (ph_atoi(argv[3]) <= 0 || !(ph_is_nbr(argv[3]))
+		|| ph_atoi(argv[3]) < TIME_LIM)
 		return (ph_error_exit(ERR_T_EAT));
-	if (ph_atoi(argv[4]) <= 0 || !(ph_is_nbr(argv[4])))
+	if (ph_atoi(argv[4]) <= 0 || !(ph_is_nbr(argv[4]))
+		|| ph_atoi(argv[4]) < TIME_LIM)
 		return (ph_error_exit(ERR_T_SLP));
 	if (argv[5] && (ph_atoi(argv[5]) < 0 || !(ph_is_nbr(argv[5]))))
 		return (ph_error_exit(ERR_N_EAT));
@@ -58,11 +61,10 @@ int	main(int argc, char **argv)
 		if (ph_args_philter(argv))
 			return (1);
 		ph_set_table(&program, philos, forks, argv);
-		thread_create(&program, forks);
+		ph_action(&program, forks);
 		ph_destroy_all(NULL, &program, forks);
 	}
 	else
 		return (ph_error_exit(ERR_ARG));
 	return (0);
 }
-

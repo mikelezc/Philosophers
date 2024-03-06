@@ -6,11 +6,11 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 21:19:34 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/02/29 12:40:31 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/06 13:10:20 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/philo.h"
+#include "../../inc/philo.h"
 // Destroys all the mutexes
 
 void	ph_destroy_all(char *msg, t_program *program, pthread_mutex_t *forks)

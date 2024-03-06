@@ -1,4 +1,4 @@
-#include "../inc/philo.h"
+#include "../../inc/philo.h"
 
 // Checks if the value of dead_flag changed
 
@@ -29,7 +29,7 @@ void	*philo_routine(void *pointer)
 	return (pointer);
 }
 
-int	thread_create(t_program *program, pthread_mutex_t *forks)
+int	ph_action(t_program *program, pthread_mutex_t *forks)
 {
 	pthread_t	p_ther;
 	int			i;
