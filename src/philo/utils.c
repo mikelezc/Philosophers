@@ -6,26 +6,11 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 21:19:34 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/06 13:10:20 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/07 13:04:57 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/philo.h"
-// Destroys all the mutexes
-
-void	ph_destroy_all(char *msg, t_program *program, pthread_mutex_t *forks)
-{
-	int	i;
-
-	if (msg)
-		ph_error_exit(msg);
-	pthread_mutex_destroy(&program->write_lock);
-	pthread_mutex_destroy(&program->meal_lock);
-	pthread_mutex_destroy(&program->dead_lock);
-	i = -1;
-	while (++i < program->philos[0].num_of_philos)
-		pthread_mutex_destroy(&forks[i]);
-}
 
 // Improved version of sleep function
 
@@ -76,9 +61,20 @@ int	ph_atoi(const char *str)
 	return (nbr * sign);
 }
 
-int	ph_error_exit(const char *msg)
+bool	ph_is_nbr(char *arg)
+{
+	while (*arg)
+	{
+		if (*arg >= '0' && *arg <= '9')
+			return (true);
+		arg++;
+	}
+	return (false);
+}
+
+bool	ph_error_exit(const char *msg)
 {
 	while (*msg)
 		write(1, msg++, 1);
-	return (1);
+	return (true);
 }
