@@ -1,8 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   p_ther.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/07 13:58:36 by mlezcano          #+#    #+#             */
+/*   Updated: 2024/03/07 13:58:50 by mlezcano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/philo.h"
 
-// Print message funtion
-
-void	print_message(char *str, t_philo *philo, int id)
+void	ph_peter_says(char *str, t_philo *philo, int id)
 {
 	size_t	time;
 
@@ -13,43 +23,37 @@ void	print_message(char *str, t_philo *philo, int id)
 	pthread_mutex_unlock(philo->write_lock);
 }
 
-// Checks if the philosopher is dead
-
-int	philosopher_dead(t_philo *philo, size_t time_to_die)
+bool	ph_has_died(t_philo *philo, size_t time_to_die)
 {
 	pthread_mutex_lock(philo->meal_lock);
 	if (get_current_time() - philo->last_meal >= time_to_die
 		&& philo->eating == 0)
-		return (pthread_mutex_unlock(philo->meal_lock), 1);
+		return (pthread_mutex_unlock(philo->meal_lock), true);
 	pthread_mutex_unlock(philo->meal_lock);
-	return (0);
+	return (false);
 }
 
-// Check if any philo died
-
-int	check_if_dead(t_philo *philos)
+bool	ph_are_u_ok(t_philo *philos)
 {
 	int	i;
 
 	i = 0;
 	while (i < philos[0].num_of_philos)
 	{
-		if (philosopher_dead(&philos[i], philos[i].time_to_die))
+		if (ph_has_died(&philos[i], philos[i].time_to_die))
 		{
-			print_message("died", &philos[i], philos[i].id);
+			ph_peter_says("died", &philos[i], philos[i].id);
 			pthread_mutex_lock(philos[0].dead_lock);
 			*philos->dead = 1;
 			pthread_mutex_unlock(philos[0].dead_lock);
-			return (1);
+			return (false);
 		}
 		i++;
 	}
-	return (0);
+	return (true);
 }
 
-// Checks if all the philos ate the num_of_meals
-
-int	check_if_all_ate(t_philo *philos)
+bool	ph_did_u_ate(t_philo *philos)
 {
 	int	i;
 	int	finished_eating;
@@ -57,7 +61,7 @@ int	check_if_all_ate(t_philo *philos)
 	i = -1;
 	finished_eating = 0;
 	if (philos[0].num_times_to_eat == -1)
-		return (0);
+		return (true);
 	while (++i < philos[0].num_of_philos)
 	{
 		pthread_mutex_lock(philos[i].meal_lock);
@@ -70,20 +74,18 @@ int	check_if_all_ate(t_philo *philos)
 		pthread_mutex_lock(philos[0].dead_lock);
 		*philos->dead = 1;
 		pthread_mutex_unlock(philos[0].dead_lock);
-		return (1);
+		return (false);
 	}
-	return (0);
+	return (true);
 }
 
-// Monitor thread routine
-
-void	*ph_viewer(void *pointer)
+void	*ph_p_ther(void *pointer)
 {
 	t_philo	*philos;
 
 	philos = (t_philo *)pointer;
 	while (1)
-		if (check_if_dead(philos) == 1 || check_if_all_ate(philos) == 1)
+		if (!ph_did_u_ate(philos) || !ph_are_u_ok(philos))
 			break ;
 	return (pointer);
 }

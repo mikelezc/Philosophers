@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 19:15:27 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/07 13:07:00 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/07 14:00:24 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 
 //Limits
 # define TIME_LIM 60
-# define DINERS_LIM 200 /*by default...*/
+# define DINERS_LIM 200
 # define INT_MAX __INT_MAX__
 
 //Structures
@@ -71,52 +71,43 @@ typedef struct s_program
 	t_philo			*philos;
 }					t_program;
 
-//Colors
-# define RESET			"\033[0m"
-# define BLACK			"\033[30m"
-# define RED			"\033[31m"
-# define GREEN			"\033[32m"
-# define YELLOW			"\033[33m"
-# define BLUE			"\033[34m"
-# define MAGENTA		"\033[35m"
-# define CYAN			"\033[36m"
-# define WHITE			"\033[37m"
+//philo.c (main)
 
-//Philo(main)
+//args
+bool	ph_is_nbr(char *arg);
+int		ph_atoi(const char *str);
 bool	ph_error_args(char **argv);
 
-//Utils
-int		ft_usleep(size_t microseconds);
-size_t	get_current_time(void);
-int		ph_atoi(const char *str);
-bool	ph_is_nbr(char *arg);
-bool	ph_error_exit(const char *msg);
-
-//Set table
-void	ph_philos_sit(t_philo *philos, t_program *program,
+//set_stage
+void	ph_setting_philo(t_philo *philo, char **argv);
+void	ph_take_seat(t_philo *philos, t_program *program,
 			pthread_mutex_t *forks, char **argv);
-void	ph_philo_set(t_philo *philo, char **argv);
-void	ph_set_table(t_program *program, t_philo *philos,
+void	ph_set_stage(t_program *program, t_philo *philos,
 			pthread_mutex_t *forks, char **argv);
 
-//Diners
+//start_dinner
 bool	ph_are_you_dead(t_philo *philo);
 void	*philo_routine(void *pointer);
-int		ph_action(t_program *program, pthread_mutex_t *forks);
+int		ph_start_dinner(t_program *program, pthread_mutex_t *forks);
 
-//P_ther
-void	print_message(char *str, t_philo *philo, int id);
-int		check_if_all_ate(t_philo *philos);
-int		check_if_dead(t_philo *philos);
-int		philosopher_dead(t_philo *philo, size_t time_to_die);
-void	*ph_viewer(void *pointer);
+//p_ther (Peter "El Lince de Entrevías")
+void	ph_peter_says(char *str, t_philo *philo, int id);
+bool	ph_has_died(t_philo *philo, size_t time_to_die);
+bool	ph_are_u_ok(t_philo *philos);
+bool	ph_did_u_ate(t_philo *philos);
+void	*ph_p_ther(void *pointer);
 
 // Actions
 void	eat(t_philo *philo);
 void	dream(t_philo *philo);
 void	think(t_philo *philo);
 
-// Clean Table
+//Utils
+int		ft_usleep(size_t microseconds);
+size_t	get_current_time(void);
+
+//exit
+bool	ph_error_exit(const char *msg);
 void	ph_clean_table(char *msg, t_program *program,
 			pthread_mutex_t *forks);
 

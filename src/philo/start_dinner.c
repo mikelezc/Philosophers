@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   start_dinner.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/07 13:40:30 by mlezcano          #+#    #+#             */
+/*   Updated: 2024/03/07 13:40:38 by mlezcano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/philo.h"
 
 bool	ph_are_you_dead(t_philo *philo)
@@ -27,12 +39,12 @@ void	*philo_routine(void *pointer)
 	return (pointer);
 }
 
-int	ph_action(t_program *program, pthread_mutex_t *forks)
+int	ph_start_dinner(t_program *program, pthread_mutex_t *forks)
 {
 	pthread_t	p_ther;
 	int			i;
 
-	if (pthread_create(&p_ther, NULL, &ph_viewer, program->philos) != 0)
+	if (pthread_create(&p_ther, NULL, &ph_p_ther, program->philos) != 0)
 		ph_clean_table(ERR_CRE_T, program, forks);
 	i = -1;
 	while (++i < program->philos[0].num_of_philos)

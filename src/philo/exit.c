@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/25 21:19:34 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/07 13:18:18 by mlezcano         ###   ########.fr       */
+/*   Created: 2024/03/07 13:18:48 by mlezcano          #+#    #+#             */
+/*   Updated: 2024/03/07 13:18:54 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/philo.h"
 
-// Improved version of sleep function
-
-int	ft_usleep(size_t milliseconds)
+bool	ph_error_exit(const char *msg)
 {
-	size_t	start;
-
-	start = get_current_time();
-	while ((get_current_time() - start) < milliseconds)
-		usleep(500);
-	return (0);
+	while (*msg)
+		write(1, msg++, 1);
+	return (true);
 }
 
-// Gets the current time in milliseconds
-
-size_t	get_current_time(void)
+void	ph_clean_table(char *msg, t_program *program, pthread_mutex_t *forks)
 {
-	struct timeval	time;
+	int	i;
 
-	if (gettimeofday(&time, NULL) == -1)
-		write(2, "gettimeofday() error\n", 22);
-	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+	if (msg)
+		ph_error_exit(msg);
+	pthread_mutex_destroy(&program->write_lock);
+	pthread_mutex_destroy(&program->meal_lock);
+	pthread_mutex_destroy(&program->dead_lock);
+	i = -1;
+	while (++i < program->philos[0].num_of_philos)
+		pthread_mutex_destroy(&forks[i]);
 }

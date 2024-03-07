@@ -14,3 +14,17 @@ Empiezo a plantear estructura de carpetas, makefile y philo.h
 
 - 28 febrero 2024
 
+Estos días atrás he terminado la parte de parsing y he seguido revisando vídeos sobre la utilización de mutex y como evitar data races, y threads.
+
+- 6 febrero 2024
+
+Varios días implementando la parte de "seteo del escenario", aún queda pero empiezo a avanzar en las siguientes partes del proyecto.
+
+Planteadas las estructuras que voy a utilizar.
+
+- 7 febrero 2024
+
+Avanzo con el planteamiento principal de "los turnos de comidas" y reviso como hacer la monitorización de los filósofos. 
+
+
+
