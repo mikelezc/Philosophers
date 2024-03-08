@@ -6,7 +6,7 @@
 #    By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/25 18:59:24 by mlezcano          #+#    #+#              #
-#    Updated: 2024/03/07 14:09:34 by mlezcano         ###   ########.fr        #
+#    Updated: 2024/03/08 13:12:14 by mlezcano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ WHITE		=	\033[0;97m
 PHILO_DIR	=	philo/
 
 #src files
-PHILO_FILES	=	philo args set_stage start_dinner p_ther routine_actions utils exit
+PHILO_FILES	=	philo args set_stage start_dinner p_ther philo_actions time exit
 
 SRC_FILES	=	$(addprefix $(PHILO_DIR), $(PHILO_FILES))
 

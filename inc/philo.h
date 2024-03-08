@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 19:15:27 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/07 14:00:24 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/08 13:12:00 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	ph_set_stage(t_program *program, t_philo *philos,
 
 //start_dinner
 bool	ph_are_you_dead(t_philo *philo);
-void	*philo_routine(void *pointer);
 int		ph_start_dinner(t_program *program, pthread_mutex_t *forks);
 
 //p_ther (Peter "El Lince de Entrevías")
@@ -97,12 +96,13 @@ bool	ph_are_u_ok(t_philo *philos);
 bool	ph_did_u_ate(t_philo *philos);
 void	*ph_p_ther(void *pointer);
 
-// Actions
-void	eat(t_philo *philo);
-void	dream(t_philo *philo);
-void	think(t_philo *philo);
+//philo_actions
+void	ph_philo_think(t_philo *philo);
+void	ph_philo_dream(t_philo *philo);
+void	ph_philo_eat(t_philo *philo);
+void	*ph_philo_actions(void *pointer);
 
-//Utils
+//time
 int		ft_usleep(size_t microseconds);
 size_t	get_current_time(void);
 
