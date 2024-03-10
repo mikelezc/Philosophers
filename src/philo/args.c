@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:14:38 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/10 16:16:33 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:28:31 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ bool	ph_error_args(t_table *table, char **argv)
 		|| ph_atoi(argv[1]) > DINERS_LIM)
 		return (ph_error_exit(ERR_PHI));
 	else
-		table->philo_amnt = ph_atoi(argv[1]);
+		table->phil_amnt = ph_atoi(argv[1]);
 	if (ph_atoi(argv[2]) < TIME_LIM || !(ph_is_nbr(argv[2])))
 		return (ph_error_exit(ERR_T_DIE));
 	else

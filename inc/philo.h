@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 19:15:27 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/10 18:12:44 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:28:25 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_diner
 {
 	int				id;
 	size_t			start_time;
-	int				philo_amnt;
+	int				phil_amnt;
 	size_t			t_die;
 	size_t			t_eat;
 	size_t			t_sleep;
@@ -60,12 +60,12 @@ typedef struct s_diner
 	pthread_mutex_t	*peter_says_mtx;
 	pthread_mutex_t	*dead_mtx;
 	pthread_mutex_t	*eat_mtx;
-	pthread_mutex_t	*right_fork;
-	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*r_fork;
+	pthread_mutex_t	*l_fork;
 }					t_diner;
 typedef struct s_table
 {
-	int				philo_amnt;
+	int				phil_amnt;
 	size_t			t_die;
 	size_t			t_eat;
 	size_t			t_sleep;

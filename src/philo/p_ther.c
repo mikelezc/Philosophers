@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:58:36 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/10 17:44:39 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:28:43 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ bool	ph_are_u_ok(t_diner *diners_list)
 	int	i;
 
 	i = 0;
-	while (i < diners_list[0].philo_amnt)
+	while (i < diners_list[0].phil_amnt)
 	{
 		if (ph_has_died(&diners_list[i], diners_list[i].t_die))
 		{
@@ -62,14 +62,14 @@ bool	ph_did_u_ate(t_diner *diners_list)
 	finished_eating = 0;
 	if (diners_list[0].nbr_times_eat == -1)
 		return (true);
-	while (++i < diners_list[0].philo_amnt)
+	while (++i < diners_list[0].phil_amnt)
 	{
 		pthread_mutex_lock(diners_list[i].eat_mtx);
 		if (diners_list[i].times_has_eaten >= diners_list[i].nbr_times_eat)
 			finished_eating++;
 		pthread_mutex_unlock(diners_list[i].eat_mtx);
 	}
-	if (finished_eating == diners_list[0].philo_amnt)
+	if (finished_eating == diners_list[0].phil_amnt)
 	{
 		pthread_mutex_lock(diners_list[0].dead_mtx);
 		*diners_list->is_dead = 1;

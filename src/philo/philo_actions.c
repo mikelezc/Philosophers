@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 13:03:16 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/10 18:12:56 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:28:47 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ void	ph_philo_dream(t_diner *philo)
 
 void	ph_philo_eat(t_diner *philo)
 {
-	pthread_mutex_lock(philo->left_fork);
+	pthread_mutex_lock(philo->l_fork);
 	ph_peter_says("has taken a fork", philo, philo->id);
-	if (philo->philo_amnt == 1)
+	if (philo->phil_amnt == 1)
 	{
 		ft_usleep(philo->t_die);
-		pthread_mutex_unlock(philo->left_fork);
+		pthread_mutex_unlock(philo->l_fork);
 		return ;
 	}
-	pthread_mutex_lock(philo->right_fork);
+	pthread_mutex_lock(philo->r_fork);
 	ph_peter_says("has taken a fork", philo, philo->id);
 	philo->is_eating = 1;
 	ph_peter_says("is eating", philo, philo->id);
@@ -43,8 +43,8 @@ void	ph_philo_eat(t_diner *philo)
 	pthread_mutex_unlock(philo->eat_mtx);
 	ft_usleep(philo->t_eat);
 	philo->is_eating = 0;
-	pthread_mutex_unlock(philo->right_fork);
-	pthread_mutex_unlock(philo->left_fork);
+	pthread_mutex_unlock(philo->r_fork);
+	pthread_mutex_unlock(philo->l_fork);
 }
 
 void	*ph_philo_actions(void *pointer)

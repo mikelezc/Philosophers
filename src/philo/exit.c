@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:18:48 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/10 16:59:12 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:28:37 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	ph_error_exit(char *msg)
 	return (true);
 }
 
-void	ph_clean_table(char *msg, t_table *table, pthread_mutex_t *forks)
+void	ph_clean_table(char *msg, t_table *table, pthread_mutex_t *forks_pile)
 {
 	int	i;
 
@@ -29,6 +29,6 @@ void	ph_clean_table(char *msg, t_table *table, pthread_mutex_t *forks)
 	pthread_mutex_destroy(&table->eat_mtx);
 	pthread_mutex_destroy(&table->dead_mtx);
 	i = -1;
-	while (++i < table->diners_list[0].philo_amnt)
-		pthread_mutex_destroy(&forks[i]);
+	while (++i < table->diners_list[0].phil_amnt)
+		pthread_mutex_destroy(&forks_pile[i]);
 }

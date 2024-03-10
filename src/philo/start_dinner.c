@@ -21,27 +21,27 @@ bool	ph_are_you_dead(t_diner *philo)
 	return (false);
 }
 
-int	ph_start_dinner(t_table *table, pthread_mutex_t *forks)
+int	ph_start_dinner(t_table *table, pthread_mutex_t *forks_pile)
 {
 	pthread_t	p_ther;
 	int			i;
 
 	if (pthread_create(&p_ther, NULL, &ph_p_ther, table->diners_list) != 0)
-		ph_clean_table(ERR_CRE_T, table, forks);
+		ph_clean_table(ERR_CRE_T, table, forks_pile);
 	i = -1;
-	while (++i < table->diners_list[0].philo_amnt)
+	while (++i < table->diners_list[0].phil_amnt)
 	{
 		if (pthread_create(&table->diners_list[i].thread,
 				NULL, &ph_philo_actions, &table->diners_list[i]) != 0)
-			ph_clean_table(ERR_CRE_T, table, forks);
+			ph_clean_table(ERR_CRE_T, table, forks_pile);
 	}
 	i = -1;
 	if (pthread_join(p_ther, NULL) != 0)
-		ph_clean_table(ERR_JOI_T, table, forks);
-	while (++i < table->diners_list[0].philo_amnt)
+		ph_clean_table(ERR_JOI_T, table, forks_pile);
+	while (++i < table->diners_list[0].phil_amnt)
 	{
 		if (pthread_join(table->diners_list[i].thread, NULL) != 0)
-			ph_clean_table(ERR_JOI_T, table, forks);
+			ph_clean_table(ERR_JOI_T, table, forks_pile);
 	}
 	return (0);
 }
