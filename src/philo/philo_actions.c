@@ -6,30 +6,30 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 13:03:16 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/08 13:13:06 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/10 13:56:25 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/philo.h"
 
-void	ph_philo_think(t_philo *philo)
+void	ph_philo_think(t_dinner *philo)
 {
 	ph_peter_says("is thinking", philo, philo->id);
 }
 
-void	ph_philo_dream(t_philo *philo)
+void	ph_philo_dream(t_dinner *philo)
 {
 	ph_peter_says("is sleeping", philo, philo->id);
-	ft_usleep(philo->time_to_sleep);
+	ft_usleep(philo->t_sleep);
 }
 
-void	ph_philo_eat(t_philo *philo)
+void	ph_philo_eat(t_dinner *philo)
 {
 	pthread_mutex_lock(philo->r_fork);
 	ph_peter_says("has taken a fork", philo, philo->id);
-	if (philo->num_of_philos == 1)
+	if (philo->philo_amnt == 1)
 	{
-		ft_usleep(philo->time_to_die);
+		ft_usleep(philo->t_die);
 		pthread_mutex_unlock(philo->r_fork);
 		return ;
 	}
@@ -37,11 +37,11 @@ void	ph_philo_eat(t_philo *philo)
 	ph_peter_says("has taken a fork", philo, philo->id);
 	philo->eating = 1;
 	ph_peter_says("is eating", philo, philo->id);
-	pthread_mutex_lock(philo->meal_lock);
+	pthread_mutex_lock(philo->eat_mtx);
 	philo->last_meal = get_current_time();
 	philo->meals_eaten++;
-	pthread_mutex_unlock(philo->meal_lock);
-	ft_usleep(philo->time_to_eat);
+	pthread_mutex_unlock(philo->eat_mtx);
+	ft_usleep(philo->t_eat);
 	philo->eating = 0;
 	pthread_mutex_unlock(philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);
@@ -49,9 +49,9 @@ void	ph_philo_eat(t_philo *philo)
 
 void	*ph_philo_actions(void *pointer)
 {
-	t_philo	*philo;
+	t_dinner	*philo;
 
-	philo = (t_philo *)pointer;
+	philo = (t_dinner *)pointer;
 	if (philo->id % 2 == 0)
 		ft_usleep(1);
 	while (ph_are_you_dead(philo) == false)

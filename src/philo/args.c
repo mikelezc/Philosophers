@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:14:38 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/07 13:14:41 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/10 16:16:33 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	ph_is_nbr(char *arg)
 	return (false);
 }
 
-int	ph_atoi(const char *str)
+int	ph_atoi(char *str)
 {
 	int				sign;
 	long long int	nbr;
@@ -49,27 +49,30 @@ int	ph_atoi(const char *str)
 	return (nbr * sign);
 }
 
-/*
-ARGUMENTS:
-argv[1] number_of_philosophers
-argv[2]time_to_die
-argv[3]time_to_eat
-argv[4]time_to_sleep 
-argv[5]number_of_times_each_philosopher_must_eat (optional)
-*/
-
-bool	ph_error_args(char **argv)
+bool	ph_error_args(t_table *table, char **argv)
 {
 	if (ph_atoi(argv[1]) <= 0 || !(ph_is_nbr(argv[1]))
 		|| ph_atoi(argv[1]) > DINERS_LIM)
 		return (ph_error_exit(ERR_PHI));
+	else
+		table->philo_amnt = ph_atoi(argv[1]);
 	if (ph_atoi(argv[2]) < TIME_LIM || !(ph_is_nbr(argv[2])))
 		return (ph_error_exit(ERR_T_DIE));
+	else
+		table->t_die = ph_atoi(argv[2]);
 	if (ph_atoi(argv[3]) < TIME_LIM || !(ph_is_nbr(argv[3])))
 		return (ph_error_exit(ERR_T_EAT));
+	else
+		table->t_eat = ph_atoi(argv[3]);
 	if (ph_atoi(argv[4]) < TIME_LIM || !(ph_is_nbr(argv[4])))
 		return (ph_error_exit(ERR_T_SLP));
+	else
+		table->t_sleep = ph_atoi(argv[4]);
 	if (argv[5] && (ph_atoi(argv[5]) < 0 || !(ph_is_nbr(argv[5]))))
 		return (ph_error_exit(ERR_N_EAT));
+	else if (argv[5])
+		table->nbr_times_eat = ph_atoi(argv[5]);
+	else
+		table->nbr_times_eat = -1;
 	return (false);
 }

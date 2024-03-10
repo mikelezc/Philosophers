@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 19:15:27 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/08 13:12:00 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/10 14:35:46 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,64 +42,71 @@
 # define INT_MAX __INT_MAX__
 
 //Structures
-typedef struct s_philo
+typedef struct s_dinner
 {
-	pthread_t		thread;
 	int				id;
+	int				philo_amnt;
+	size_t			t_die;
+	size_t			t_eat;
+	size_t			t_sleep;
+	int				nbr_times_eat;
+	pthread_t		thread;
 	int				eating;
 	int				meals_eaten;
 	size_t			last_meal;
-	size_t			time_to_die;
-	size_t			time_to_eat;
-	size_t			time_to_sleep;
 	size_t			start_time;
-	int				num_of_philos;
-	int				num_times_to_eat;
 	int				*dead;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
-	pthread_mutex_t	*write_lock;
-	pthread_mutex_t	*dead_lock;
-	pthread_mutex_t	*meal_lock;
-}					t_philo;
-typedef struct s_program
+	pthread_mutex_t	*peter_says_mtx;
+	pthread_mutex_t	*dead_mtx;
+	pthread_mutex_t	*eat_mtx;
+}					t_dinner;
+typedef struct s_table
 {
+	int				philo_amnt;
+	size_t			t_die;
+	size_t			t_eat;
+	size_t			t_sleep;
+	int				nbr_times_eat;
 	int				dead_flag;
-	pthread_mutex_t	dead_lock;
-	pthread_mutex_t	meal_lock;
-	pthread_mutex_t	write_lock;
-	t_philo			*philos;
-}					t_program;
+	pthread_mutex_t	dead_mtx;
+	pthread_mutex_t	eat_mtx;
+	pthread_mutex_t	peter_says_mtx;
+	t_dinner		*philos;
+}					t_table;
 
 //philo.c (main)
 
 //args
 bool	ph_is_nbr(char *arg);
-int		ph_atoi(const char *str);
-bool	ph_error_args(char **argv);
+int		ph_atoi(char *str);
+bool	ph_error_args(t_table *table, char **argv);
 
 //set_stage
-void	ph_setting_philo(t_philo *philo, char **argv);
-void	ph_take_seat(t_philo *philos, t_program *program,
-			pthread_mutex_t *forks, char **argv);
-void	ph_set_stage(t_program *program, t_philo *philos,
-			pthread_mutex_t *forks, char **argv);
+void	ph_setting_philo(t_dinner *philo, t_table *table);
+void	ph_philos_take_seat(t_dinner *philos, t_table *table,
+			pthread_mutex_t *forks);
+void	ph_mutex_init_forks(pthread_mutex_t *forks, t_table *table);
+void	ph_mutex_init_table(t_table *table);
+void	ph_set_stage(t_table *table, t_dinner *philos,
+			pthread_mutex_t *forks);
 
 //start_dinner
-bool	ph_are_you_dead(t_philo *philo);
-int		ph_start_dinner(t_program *program, pthread_mutex_t *forks);
+bool	ph_are_you_dead(t_dinner *philo);
+int		ph_start_dinner(t_table *table, pthread_mutex_t *forks);
 
 //p_ther (Peter "El Lince de Entrevías")
-void	ph_peter_says(char *str, t_philo *philo, int id);
-bool	ph_has_died(t_philo *philo, size_t time_to_die);
-bool	ph_are_u_ok(t_philo *philos);
-bool	ph_did_u_ate(t_philo *philos);
+void	ph_peter_says(char *str, t_dinner *philo, int id);
+bool	ph_has_died(t_dinner *philo, size_t t_die);
+bool	ph_are_u_ok(t_dinner *philos);
+bool	ph_did_u_ate(t_dinner *philos);
 void	*ph_p_ther(void *pointer);
 
 //philo_actions
-void	ph_philo_think(t_philo *philo);
-void	ph_philo_dream(t_philo *philo);
-void	ph_philo_eat(t_philo *philo);
+void	ph_philo_think(t_dinner *philo);
+void	ph_philo_dream(t_dinner *philo);
+void	ph_philo_eat(t_dinner *philo);
 void	*ph_philo_actions(void *pointer);
 
 //time
@@ -107,8 +114,8 @@ int		ft_usleep(size_t microseconds);
 size_t	get_current_time(void);
 
 //exit
-bool	ph_error_exit(const char *msg);
-void	ph_clean_table(char *msg, t_program *program,
+bool	ph_error_exit(char *msg);
+void	ph_clean_table(char *msg, t_table *table,
 			pthread_mutex_t *forks);
 
 #endif
