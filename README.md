@@ -24,7 +24,13 @@ Planteadas las estructuras que voy a utilizar.
 
 - 7 febrero 2024
 
-Avanzo con el planteamiento principal de "los turnos de comidas" y reviso como hacer la monitorización de los filósofos. 
+Avanzo con el planteamiento principal de "los turnos de comidas" y reviso como hacer la monitorización de los filósofos.
+
+- 10 febrero 2024
+
+Pulo a fondo toda la parte de parseo para que el código sea lo más legible posible.
+Amplío y modifico las estructuras.
+Terminada toda la parte de inicio de mutex, seteo de las estructuras, y asignación de los tenedores. Ya se como poner la mesa entera con comensales y todo! (set_scenario)
 
 
 
