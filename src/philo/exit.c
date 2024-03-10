@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:18:48 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/10 13:56:12 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/10 16:59:12 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ void	ph_clean_table(char *msg, t_table *table, pthread_mutex_t *forks)
 	pthread_mutex_destroy(&table->eat_mtx);
 	pthread_mutex_destroy(&table->dead_mtx);
 	i = -1;
-	while (++i < table->philos[0].philo_amnt)
+	while (++i < table->diners_list[0].philo_amnt)
 		pthread_mutex_destroy(&forks[i]);
 }

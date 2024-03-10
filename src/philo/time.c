@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 21:19:34 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/08 17:54:17 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:45:09 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,13 @@ int	ft_usleep(size_t milliseconds)
 {
 	size_t	start;
 
-	start = get_current_time();
-	while ((get_current_time() - start) < milliseconds)
+	start = ph_what_time_is_it();
+	while ((ph_what_time_is_it() - start) < milliseconds)
 		usleep(500);
 	return (0);
 }
 
-// Gets the current time in milliseconds
-
-size_t	get_current_time(void)
+size_t	ph_what_time_is_it(void)
 {
 	struct timeval	time;
 
