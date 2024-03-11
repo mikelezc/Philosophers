@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:14:38 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/10 18:28:31 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/11 10:23:17 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ bool	ph_error_args(t_table *table, char **argv)
 	if (argv[5] && (ph_atoi(argv[5]) < 0 || !(ph_is_nbr(argv[5]))))
 		return (ph_error_exit(ERR_N_EAT));
 	else if (argv[5])
-		table->nbr_times_eat = ph_atoi(argv[5]);
+		table->nbr_times_to_eat = ph_atoi(argv[5]);
 	else
-		table->nbr_times_eat = -1;
+		table->nbr_times_to_eat = -1;
 	return (false);
 }

@@ -6,13 +6,13 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:29:48 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/10 18:30:15 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/11 11:18:37 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/philo.h"
 
-void	ph_distribute_forks(t_diner *diners_list, pthread_mutex_t *forks_pile)
+void	ph_put_forks(t_diner *diners_list, pthread_mutex_t *forks_pile)
 {
 	int	i;
 
@@ -40,11 +40,11 @@ void	ph_diners_take_seat(t_diner *diners_list, t_table *table)
 		diners_list[i].t_die = table->t_die;
 		diners_list[i].t_eat = table->t_eat;
 		diners_list[i].t_sleep = table->t_sleep;
-		diners_list[i].nbr_times_eat = table->nbr_times_eat;
-		diners_list[i].is_eating = 0;
+		diners_list[i].nbr_times_to_eat = table->nbr_times_to_eat;
+		diners_list[i].is_eating = false;
 		diners_list[i].times_has_eaten = 0;
 		diners_list[i].last_meal = ph_what_time_is_it();
-		diners_list[i].is_dead = &table->set_deaths;
+		diners_list[i].finish_flag = &table->set_finish_flag;
 		diners_list[i].peter_says_mtx = &table->peter_says_mtx;
 		diners_list[i].dead_mtx = &table->dead_mtx;
 		diners_list[i].eat_mtx = &table->eat_mtx;
@@ -66,9 +66,9 @@ void	ph_mutex_init_table(pthread_mutex_t *forks_pile, t_table *table)
 void	ph_set_scenario(t_table *table, t_diner *diners_list,
 		pthread_mutex_t *forks_pile)
 {
-	table->set_deaths = 0;
+	table->set_finish_flag = false;
 	table->diners_list = diners_list;
 	ph_mutex_init_table(forks_pile, table);
 	ph_diners_take_seat(diners_list, table);
-	ph_distribute_forks(diners_list, forks_pile);
+	ph_put_forks(diners_list, forks_pile);
 }

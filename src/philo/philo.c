@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 19:25:11 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/10 18:22:03 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/10 19:28:20 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ int	main(int argc, char **argv)
 	}
 	else
 		return (ph_error_exit(ERR_ARG));
-	//atexit(myleaks);
+	atexit(myleaks);
 	return (0);
 }
