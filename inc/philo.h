@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 19:15:27 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/11 19:50:26 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/11 20:50:10 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	ph_philo_eat(t_diner *philo);
 void	*ph_philo_actions(void *argmnts);
 
 //time
-int		ph_usleep(size_t usec);
+int		ph_sleep(size_t msec);
 size_t	ph_what_time_is_it(void);
 
 //finish

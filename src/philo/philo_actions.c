@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 13:03:16 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/11 19:37:21 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/11 20:48:23 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ph_philo_think(t_diner *diner)
 void	ph_philo_sleep(t_diner *diner)
 {
 	ph_peter_says(diner->id, "is sleeping", diner);
-	ph_usleep(diner->t_sleep);
+	ph_sleep(diner->t_sleep);
 }
 
 void	ph_philo_eat(t_diner *diner)
@@ -29,7 +29,7 @@ void	ph_philo_eat(t_diner *diner)
 	ph_peter_says(diner->id, "has taken a fork", diner);
 	if (diner->phil_amnt == 1)
 	{
-		ph_usleep(diner->t_die);
+		ph_sleep(diner->t_die);
 		pthread_mutex_unlock(diner->l_fork);
 		return ;
 	}
@@ -41,7 +41,7 @@ void	ph_philo_eat(t_diner *diner)
 	diner->last_meal = ph_what_time_is_it();
 	diner->times_has_eaten++;
 	pthread_mutex_unlock(diner->eat_mtx);
-	ph_usleep(diner->t_eat);
+	ph_sleep(diner->t_eat);
 	diner->is_eating = false;
 	pthread_mutex_unlock(diner->r_fork);
 	pthread_mutex_unlock(diner->l_fork);
@@ -53,7 +53,7 @@ void	*ph_philo_actions(void *argmnts)
 
 	diner = (t_diner *)argmnts;
 	if (diner->id % 2 == 0)
-		ph_usleep(1);
+		ph_sleep(1);
 	else
 	{
 		while (!ph_check_dinner_finish(diner))

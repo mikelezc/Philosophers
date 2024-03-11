@@ -6,12 +6,11 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:18:48 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/11 19:50:19 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/11 20:25:39 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/philo.h"
-
 
 bool	ph_error_exit(char *msg)
 {
