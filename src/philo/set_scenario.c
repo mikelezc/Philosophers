@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:29:48 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/11 11:18:37 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/11 19:27:40 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ph_diners_take_seat(t_diner *diners_list, t_table *table)
 		diners_list[i].last_meal = ph_what_time_is_it();
 		diners_list[i].finish_flag = &table->set_finish_flag;
 		diners_list[i].peter_says_mtx = &table->peter_says_mtx;
-		diners_list[i].dead_mtx = &table->dead_mtx;
+		diners_list[i].finish_mtx = &table->finish_mtx;
 		diners_list[i].eat_mtx = &table->eat_mtx;
 	}
 }
@@ -60,7 +60,7 @@ void	ph_mutex_init_table(pthread_mutex_t *forks_pile, t_table *table)
 		pthread_mutex_init(&forks_pile[i], NULL);
 	pthread_mutex_init(&table->peter_says_mtx, NULL);
 	pthread_mutex_init(&table->eat_mtx, NULL);
-	pthread_mutex_init(&table->dead_mtx, NULL);
+	pthread_mutex_init(&table->finish_mtx, NULL);
 }
 
 void	ph_set_scenario(t_table *table, t_diner *diners_list,

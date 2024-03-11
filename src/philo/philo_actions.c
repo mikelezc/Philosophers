@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 13:03:16 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/11 11:42:30 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/11 19:37:21 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ph_philo_think(t_diner *diner)
 	ph_peter_says(diner->id, "is thinking", diner);
 }
 
-void	ph_philo_dream(t_diner *diner)
+void	ph_philo_sleep(t_diner *diner)
 {
 	ph_peter_says(diner->id, "is sleeping", diner);
 	ph_usleep(diner->t_sleep);
@@ -54,11 +54,14 @@ void	*ph_philo_actions(void *argmnts)
 	diner = (t_diner *)argmnts;
 	if (diner->id % 2 == 0)
 		ph_usleep(1);
-	while (!ph_check_dinner_finish(diner))
+	else
 	{
-		ph_philo_eat(diner);
-		ph_philo_dream(diner);
-		ph_philo_think(diner);
+		while (!ph_check_dinner_finish(diner))
+		{
+			ph_philo_eat(diner);
+			ph_philo_sleep(diner);
+			ph_philo_think(diner);
+		}
 	}
 	return (argmnts);
 }

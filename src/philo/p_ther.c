@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:58:36 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/11 11:28:21 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/11 19:27:59 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ bool	ph_smone_hs_died(t_diner *diners_list)
 		if (ph_hasnt_eaten_on_time(&diners_list[i], diners_list[i].t_die))
 		{
 			ph_peter_says(diners_list[i].id, "died", &diners_list[i]);
-			pthread_mutex_lock(diners_list[0].dead_mtx);
+			pthread_mutex_lock(diners_list[0].finish_mtx);
 			*diners_list->finish_flag = 1;
-			pthread_mutex_unlock(diners_list[0].dead_mtx);
+			pthread_mutex_unlock(diners_list[0].finish_mtx);
 			return (true);
 		}
 	}
@@ -76,9 +76,9 @@ bool	ph_finished_meals(t_diner *diners_list)
 	}
 	if (hw_mny_finshd_eating == diners_list[0].phil_amnt)
 	{
-		pthread_mutex_lock(diners_list[0].dead_mtx);
+		pthread_mutex_lock(diners_list[0].finish_mtx);
 		*diners_list->finish_flag = 1;
-		pthread_mutex_unlock(diners_list[0].dead_mtx);
+		pthread_mutex_unlock(diners_list[0].finish_mtx);
 		return (true);
 	}
 	return (false);

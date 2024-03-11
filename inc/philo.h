@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 19:15:27 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/11 11:52:51 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/11 19:50:26 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct s_diner
 	size_t			last_meal;
 	bool			*finish_flag;
 	pthread_mutex_t	*peter_says_mtx;
-	pthread_mutex_t	*dead_mtx;
+	pthread_mutex_t	*finish_mtx;
 	pthread_mutex_t	*eat_mtx;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
@@ -73,7 +73,7 @@ typedef struct s_table
 	size_t			t_sleep;
 	int				nbr_times_to_eat;
 	bool			set_finish_flag;
-	pthread_mutex_t	dead_mtx;
+	pthread_mutex_t	finish_mtx;
 	pthread_mutex_t	eat_mtx;
 	pthread_mutex_t	peter_says_mtx;
 	t_diner			*diners_list;
@@ -106,7 +106,7 @@ void	*ph_p_ther(void *argmnts);
 
 //philo_actions
 void	ph_philo_think(t_diner *philo);
-void	ph_philo_dream(t_diner *philo);
+void	ph_philo_sleep(t_diner *philo);
 void	ph_philo_eat(t_diner *philo);
 void	*ph_philo_actions(void *argmnts);
 
@@ -115,7 +115,6 @@ int		ph_usleep(size_t usec);
 size_t	ph_what_time_is_it(void);
 
 //finish
-void	ph_error(char *msg);
 bool	ph_error_exit(char *msg);
 void	ph_clean_table(char *msg, t_table *table,
 			pthread_mutex_t *forks);
