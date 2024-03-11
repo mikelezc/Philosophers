@@ -16,21 +16,26 @@ Empiezo a plantear estructura de carpetas, makefile y philo.h
 
 Estos días atrás he terminado la parte de parsing y he seguido revisando vídeos sobre la utilización de mutex y como evitar data races, y threads.
 
-- 6 febrero 2024
+- 6 marzo 2024
 
 Varios días implementando la parte de "seteo del escenario", aún queda pero empiezo a avanzar en las siguientes partes del proyecto.
 
 Planteadas las estructuras que voy a utilizar.
 
-- 7 febrero 2024
+- 7 marzo 2024
 
 Avanzo con el planteamiento principal de "los turnos de comidas" y reviso como hacer la monitorización de los filósofos.
 
-- 10 febrero 2024
+- 8 marzo 2024
 
 Pulo a fondo toda la parte de parseo para que el código sea lo más legible posible.
 Amplío y modifico las estructuras.
-Terminada toda la parte de inicio de mutex, seteo de las estructuras, y asignación de los tenedores. Ya se como poner la mesa entera con comensales y todo! (set_scenario)
+Terminada toda la parte de inicio de mutex, seteo de las estructuras, y asignación de los tenedores. Ya se como poner la mesa entera con comensales y todo! (set_scenario).
+He empezado con la parte de Peter (parte de monitoreo).
+
+- 10 marzo 2024
+
+Estos dos últimos días he dejado planteado (con mucho curro) las acciones de los filósofos, así como herramientas laterales (sleep, etc)
 
 
 
