@@ -6,13 +6,13 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 21:19:34 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/11 20:56:59 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/12 21:24:20 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/philo.h"
 
-int	ph_sleep(size_t msec)
+int	ph_sleep(size_t msec) //TODO
 {
 	size_t	zero_t;
 

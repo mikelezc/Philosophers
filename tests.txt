@@ -10,7 +10,9 @@ Test with any values of your choice to verify all the requirements. Ensure philo
 
 
 
-
+Test mega jodido ./philo 3 310 103 103
+3 philos, con 310 de muerte, si comen 103 es 103*3 = 309
+tiene 1 milisegundo de margen hasta la muerte
 
 
 

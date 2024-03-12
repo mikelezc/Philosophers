@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 13:03:16 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/12 20:38:04 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/12 21:24:35 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ph_philo_sleep(t_diner *diner)
 	ph_sleep(diner->t_sleep);
 }
 
-void	ph_philo_eat(t_diner *diner)
+void	ph_philo_eat(t_diner *diner) //TODO
 {
 	pthread_mutex_lock(diner->l_fork);
 	ph_peter_says(diner->id, "has taken a fork", diner);
