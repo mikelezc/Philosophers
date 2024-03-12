@@ -6,7 +6,7 @@
 #    By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/25 18:59:24 by mlezcano          #+#    #+#              #
-#    Updated: 2024/03/11 11:38:38 by mlezcano         ###   ########.fr        #
+#    Updated: 2024/03/11 21:27:11 by mlezcano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,6 @@ CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror -g
 RM			= rm -f
 ECHO		= echo -e
-FSANITIZE	= -fsanitize=address -g3
 
 #output
 NAME		= philo
@@ -92,4 +91,4 @@ fclean:		clean
 re:			fclean all
 			@$(ECHO) -n "$(GREEN)Everything cleaned and rebuilt for [philo]! 🙌🙌🙌$(DEF_COLOR)\n"
 
-.PHONY:		all clean fclean re
+.PHONY:		start all clean fclean re
