@@ -51,5 +51,5 @@ Segunda revisión general, limpieza y optimización del código.
 Limpio la copia de variables entre mis dos estructuras al haberlas enlazado mutuamente.
 Así evito redundancias en mis estructuras y las dejo lo más limpias posible.
 
-PD: Hola Amanda! 🖖🏻
+PD: Hello Amanda! 🖖🏻🖖🏻🖖🏻 xD
 (foto si me encuentras :p) 
