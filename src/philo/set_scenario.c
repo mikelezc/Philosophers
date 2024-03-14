@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:33:49 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/14 13:11:12 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:34:14 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,20 @@ void	ph_mutex_init_table(pthread_mutex_t *forks_pile, t_table *table)
 	pthread_mutex_init(&table->finish_mtx, NULL);
 }
 
-void	ph_set_scenario(t_table *table,
+bool	ph_set_scenario(t_table *table,
 		pthread_mutex_t *forks_pile)
 {
-	table->finish_flag = false;
 	table->shared_fork = malloc(sizeof(char) * table->phil_amnt);
 	table->diners_list = malloc(sizeof(t_diner) * table->phil_amnt);
 	forks_pile = malloc(sizeof(forks_pile) * table->phil_amnt);
 	if (!table->shared_fork || !table->diners_list || !forks_pile)
-		ph_error_exit(ERR_MALLOC);
-	ph_mutex_init_table(forks_pile, table);
-	ph_diners_take_seat(table->diners_list, table);
-	ph_put_forks(table->diners_list, forks_pile);
+		return (ph_error_exit(ERR_MALLOC));
+	else
+	{
+		table->finish_flag = false;
+		ph_mutex_init_table(forks_pile, table);
+		ph_diners_take_seat(table->diners_list, table);
+		ph_put_forks(table->diners_list, forks_pile);
+		return (false);
+	}
 }

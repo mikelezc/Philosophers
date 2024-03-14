@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:28:47 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/14 13:11:03 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:30:01 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ bool	ph_error_args(t_table *table, char **argv);
 void	ph_put_forks(t_diner *diners_list, pthread_mutex_t *forks);
 void	ph_diners_take_seat(t_diner *diners_list, t_table *table);
 void	ph_mutex_init_table(pthread_mutex_t *forks, t_table *table);
-void	ph_set_scenario(t_table *table, pthread_mutex_t *forks);
+bool	ph_set_scenario(t_table *table, pthread_mutex_t *forks);
 
 //start_dinner
 bool	ph_check_dinner_finish(t_diner *philo);
