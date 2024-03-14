@@ -52,3 +52,4 @@ Limpio la copia de variables entre mis dos estructuras al haberlas enlazado mutu
 Así evito redundancias en mis estructuras y las dejo lo más limpias posible.
 
 PD: Hola Amanda! :p
+foto si me encuentras 
