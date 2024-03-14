@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:28:47 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/14 16:30:01 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/14 18:33:31 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct s_diner
 typedef struct s_table
 {
 	char			*shared_fork;
-	long int		phil_amnt;
+	long			phil_amnt;
 	size_t			t_die;
 	size_t			t_eat;
 	size_t			t_sleep;
@@ -92,7 +92,6 @@ void	ph_mutex_init_table(pthread_mutex_t *forks, t_table *table);
 bool	ph_set_scenario(t_table *table, pthread_mutex_t *forks);
 
 //start_dinner
-bool	ph_check_dinner_finish(t_diner *philo);
 int		ph_start_dinner(t_table *table);
 
 //p_ther (Peter "El Lince de Entrevías")
@@ -105,12 +104,22 @@ void	*ph_p_ther(void *argmnts);
 //philo_actions
 void	ph_philo_think(t_diner *philo);
 void	ph_philo_sleep(t_diner *philo);
+bool	ph_check_dinner_finish(t_diner *philo);
 void	*ph_philo_actions(void *argmnts);
 
-//eat
+/*//eat
 void	ph_release_forks(t_diner *diner);
 void	ph_check_fork(t_diner *diner, pthread_mutex_t	*fork, int fork_place);
 void	ph_acquire_forks(t_diner *diner);
+void	ph_philo_eat(t_diner *philo);
+*/
+
+//eat
+void	ph_release_forks(t_diner *diner, pthread_mutex_t	*left_fork,
+			pthread_mutex_t	*right_fork);
+void	ph_check_fork(t_diner *diner, pthread_mutex_t	*fork, int fork_place);
+void	ph_acquire_forks(t_diner *diner, pthread_mutex_t	*left_fork,
+			pthread_mutex_t	*right_fork);
 void	ph_philo_eat(t_diner *philo);
 
 //time
