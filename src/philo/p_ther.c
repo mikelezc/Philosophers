@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:58:36 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/11 19:27:59 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/13 15:27:55 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	ph_hasnt_eaten_on_time(t_diner *philo, size_t t_die)
 {
 	pthread_mutex_lock(philo->eat_mtx);
 	if (ph_what_time_is_it() - philo->last_meal >= t_die
-		&& !(philo->is_eating))
+		/*&& !(philo->is_eating)*/)
 	{
 		pthread_mutex_unlock(philo->eat_mtx);
 		return (true);

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/07 13:29:48 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/11 19:27:40 by mlezcano         ###   ########.fr       */
+/*   Created: 2024/03/13 13:33:49 by mlezcano          #+#    #+#             */
+/*   Updated: 2024/03/13 15:42:41 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	ph_diners_take_seat(t_diner *diners_list, t_table *table)
 		diners_list[i].peter_says_mtx = &table->peter_says_mtx;
 		diners_list[i].finish_mtx = &table->finish_mtx;
 		diners_list[i].eat_mtx = &table->eat_mtx;
+		diners_list[i].table = table;
+		diners_list[i].forks = 0;
 	}
 }
 
@@ -63,12 +65,16 @@ void	ph_mutex_init_table(pthread_mutex_t *forks_pile, t_table *table)
 	pthread_mutex_init(&table->finish_mtx, NULL);
 }
 
-void	ph_set_scenario(t_table *table, t_diner *diners_list,
+void	ph_set_scenario(t_table *table,
 		pthread_mutex_t *forks_pile)
 {
 	table->set_finish_flag = false;
-	table->diners_list = diners_list;
+	table->shared_fork = malloc(sizeof(char) * table->phil_amnt);
+	table->diners_list = malloc(sizeof(t_diner) * table->phil_amnt);
+	forks_pile = malloc(sizeof(forks_pile) * table->phil_amnt);
+	if (!table->shared_fork || !table->diners_list || !forks_pile)
+		ph_error_exit("ADIOS HAMIJOS");
 	ph_mutex_init_table(forks_pile, table);
-	ph_diners_take_seat(diners_list, table);
-	ph_put_forks(diners_list, forks_pile);
+	ph_diners_take_seat(table->diners_list, table);
+	ph_put_forks(table->diners_list, forks_pile);
 }

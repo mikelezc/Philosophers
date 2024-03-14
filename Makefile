@@ -6,7 +6,7 @@
 #    By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/25 18:59:24 by mlezcano          #+#    #+#              #
-#    Updated: 2024/03/11 21:27:11 by mlezcano         ###   ########.fr        #
+#    Updated: 2024/03/13 15:36:29 by mlezcano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ SHELL		=	/bin/bash
 #compiler
 
 CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror -g
+CFLAGS		= -Wall -Wextra -Werror -pthread -Ofast -O3 -march=native -g
 RM			= rm -f
 ECHO		= echo -e
 
@@ -46,7 +46,7 @@ WHITE		=	\033[0;97m
 PHILO_DIR	=	philo/
 
 #src files
-PHILO_FILES	=	philo args set_scenario start_dinner p_ther philo_actions time finish
+PHILO_FILES	=	philo args set_scenario start_dinner p_ther philo_actions eat time finish
 
 SRC_FILES	=	$(addprefix $(PHILO_DIR), $(PHILO_FILES))
 

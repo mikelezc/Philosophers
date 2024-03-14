@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:18:48 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/11 20:25:39 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/13 15:11:28 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,15 @@ bool	ph_error_exit(char *msg)
 	return (true);
 }
 
-void	ph_clean_table(char *msg, t_table *table, pthread_mutex_t *forks_pile)
+void	ph_clean_table(char *msg, t_table *table)
 {
 	int	i;
 
 	if (msg)
 		ph_error_exit(msg);
 	i = -1;
-	while (++i < table->phil_amnt)
-		pthread_mutex_destroy(&forks_pile[i]);
 	pthread_mutex_destroy(&table->peter_says_mtx);
 	pthread_mutex_destroy(&table->eat_mtx);
 	pthread_mutex_destroy(&table->finish_mtx);
+	free(table->shared_fork);
 }

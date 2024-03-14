@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/08 13:03:16 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/12 21:24:35 by mlezcano         ###   ########.fr       */
+/*   Created: 2024/03/13 13:20:50 by mlezcano          #+#    #+#             */
+/*   Updated: 2024/03/13 13:27:43 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,37 +23,13 @@ void	ph_philo_sleep(t_diner *diner)
 	ph_sleep(diner->t_sleep);
 }
 
-void	ph_philo_eat(t_diner *diner) //TODO
-{
-	pthread_mutex_lock(diner->l_fork);
-	ph_peter_says(diner->id, "has taken a fork", diner);
-	if (diner->phil_amnt == 1)
-	{
-		ph_sleep(diner->t_die);
-		pthread_mutex_unlock(diner->l_fork);
-		return ;
-	}
-	pthread_mutex_lock(diner->r_fork);
-	ph_peter_says(diner->id, "has taken a fork", diner);
-	diner->is_eating = true;
-	ph_peter_says(diner->id, "is eating", diner);
-	pthread_mutex_lock(diner->eat_mtx);
-	diner->last_meal = ph_what_time_is_it();
-	diner->times_has_eaten++;
-	pthread_mutex_unlock(diner->eat_mtx);
-	ph_sleep(diner->t_eat);
-	diner->is_eating = false;
-	pthread_mutex_unlock(diner->r_fork);
-	pthread_mutex_unlock(diner->l_fork);
-}
-
 void	*ph_philo_actions(void *argmnts)
 {
 	t_diner	*diner;
 
 	diner = (t_diner *)argmnts;
-	if (diner->id % 2 == 0)
-		ph_sleep(1);
+	//if (diner->id % 2 == 0)
+		//ph_sleep(1);
 	while (!ph_check_dinner_finish(diner))
 	{
 		ph_philo_eat(diner);

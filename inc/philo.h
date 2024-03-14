@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/25 19:15:27 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/11 21:04:37 by mlezcano         ###   ########.fr       */
+/*   Created: 2024/03/13 13:28:47 by mlezcano          #+#    #+#             */
+/*   Updated: 2024/03/13 15:31:26 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@
 # define DINERS_LIM 200
 # define INT_MAX __INT_MAX__
 
+typedef struct s_table	t_table;
+
 //Structures
 typedef struct s_diner
 {
@@ -64,9 +66,13 @@ typedef struct s_diner
 	pthread_mutex_t	*eat_mtx;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
+	int				forks;
+	t_table			*table;
 }					t_diner;
+
 typedef struct s_table
 {
+	char			*shared_fork;
 	long int		phil_amnt;
 	size_t			t_die;
 	size_t			t_eat;
@@ -90,12 +96,11 @@ bool	ph_error_args(t_table *table, char **argv);
 void	ph_put_forks(t_diner *diners_list, pthread_mutex_t *forks);
 void	ph_diners_take_seat(t_diner *diners_list, t_table *table);
 void	ph_mutex_init_table(pthread_mutex_t *forks, t_table *table);
-void	ph_set_scenario(t_table *table, t_diner *diners_list,
-			pthread_mutex_t *forks);
+void	ph_set_scenario(t_table *table, pthread_mutex_t *forks);
 
 //start_dinner
 bool	ph_check_dinner_finish(t_diner *philo);
-int		ph_start_dinner(t_table *table, pthread_mutex_t *forks);
+int		ph_start_dinner(t_table *table);
 
 //p_ther (Peter "El Lince de Entrevías")
 void	ph_peter_says(int id, char *msg, t_diner *philo);
@@ -107,8 +112,13 @@ void	*ph_p_ther(void *argmnts);
 //philo_actions
 void	ph_philo_think(t_diner *philo);
 void	ph_philo_sleep(t_diner *philo);
-void	ph_philo_eat(t_diner *philo);
 void	*ph_philo_actions(void *argmnts);
+
+//eat
+void	ph_release_forks(t_diner *diner);
+void	ph_check_fork(t_diner *diner, pthread_mutex_t	*fork, int fork_place);
+void	ph_acquire_forks(t_diner *diner);
+void	ph_philo_eat(t_diner *philo);
 
 //time
 int		ph_sleep(size_t msec);
@@ -116,7 +126,6 @@ size_t	ph_what_time_is_it(void);
 
 //finish
 bool	ph_error_exit(char *msg);
-void	ph_clean_table(char *msg, t_table *table,
-			pthread_mutex_t *forks);
+void	ph_clean_table(char *msg, t_table *table);
 
 #endif
