@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 19:25:11 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/14 16:30:16 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:39:30 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@ int	main(int argc, char **argv)
 
 	if (argc == 5 || argc == 6)
 	{
-		if (ph_error_args(&table, argv))
-			return (1);
-		if (ph_set_scenario(&table, &forks_pile))
+		if (ph_error_args(&table, argv)
+			|| (ph_set_scenario(&table, &forks_pile)))
 			return (1);
 		ph_start_dinner(&table);
 		ph_clean_table(NULL, &table);
