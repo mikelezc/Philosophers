@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:33:49 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/14 12:42:35 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/14 13:11:12 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	ph_put_forks(t_diner *diners_list, pthread_mutex_t *forks_pile)
 	{
 		diners_list[i].r_fork = &forks_pile[i];
 		if (i == 0)
-			diners_list[i].l_fork = &forks_pile[diners_list->table->phil_amnt - 1];
+			diners_list[i].l_fork
+				= &forks_pile[diners_list->table->phil_amnt - 1];
 		else
 			diners_list[i].l_fork = &forks_pile[i - 1];
 	}
@@ -36,15 +37,9 @@ void	ph_diners_take_seat(t_diner *diners_list, t_table *table)
 	{
 		diners_list[i].id = i + 1;
 		diners_list[i].start_time = ph_what_time_is_it();
-		diners_list[i].t_sleep = table->t_sleep;
-		diners_list[i].nbr_times_to_eat = table->nbr_times_to_eat;
 		diners_list[i].is_eating = false;
 		diners_list[i].times_has_eaten = 0;
 		diners_list[i].last_meal = ph_what_time_is_it();
-		diners_list[i].finish_flag = &table->set_finish_flag;
-		diners_list[i].peter_says_mtx = &table->peter_says_mtx;
-		diners_list[i].finish_mtx = &table->finish_mtx;
-		diners_list[i].eat_mtx = &table->eat_mtx;
 		diners_list[i].table = table;
 		diners_list[i].forks = 0;
 	}
@@ -65,7 +60,7 @@ void	ph_mutex_init_table(pthread_mutex_t *forks_pile, t_table *table)
 void	ph_set_scenario(t_table *table,
 		pthread_mutex_t *forks_pile)
 {
-	table->set_finish_flag = false;
+	table->finish_flag = false;
 	table->shared_fork = malloc(sizeof(char) * table->phil_amnt);
 	table->diners_list = malloc(sizeof(t_diner) * table->phil_amnt);
 	forks_pile = malloc(sizeof(forks_pile) * table->phil_amnt);

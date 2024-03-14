@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:58:36 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/14 12:38:44 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/14 13:09:27 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,25 @@ void	ph_peter_says(int id, char *msg, t_diner *philo)
 {
 	size_t	time;
 
-	pthread_mutex_lock(philo->peter_says_mtx);
+	pthread_mutex_lock(&philo->table->peter_says_mtx);
 	time = ph_what_time_is_it() - philo->start_time;
 	if (!ph_check_dinner_finish(philo))
 		printf("%zu %d %s\n", time, id, msg);
-	pthread_mutex_unlock(philo->peter_says_mtx);
+	pthread_mutex_unlock(&philo->table->peter_says_mtx);
 }
 
 bool	ph_hasnt_eaten_on_time(t_diner *philo, size_t t_die)
 {
-	pthread_mutex_lock(philo->eat_mtx);
+	pthread_mutex_lock(&philo->table->eat_mtx);
 	if (ph_what_time_is_it() - philo->last_meal >= t_die
 		/*&& !(philo->is_eating)*/)
 	{
-		pthread_mutex_unlock(philo->eat_mtx);
+		pthread_mutex_unlock(&philo->table->eat_mtx);
 		return (true);
 	}
 	else
 	{
-		pthread_mutex_unlock(philo->eat_mtx);
+		pthread_mutex_unlock(&philo->table->eat_mtx);
 		return (false);
 	}
 }
@@ -49,9 +49,9 @@ bool	ph_smone_hs_died(t_diner *diners_list)
 		if (ph_hasnt_eaten_on_time(&diners_list[i], diners_list->table->t_die))
 		{
 			ph_peter_says(diners_list[i].id, "died", &diners_list[i]);
-			pthread_mutex_lock(diners_list[0].finish_mtx);
-			*diners_list->finish_flag = 1;
-			pthread_mutex_unlock(diners_list[0].finish_mtx);
+			pthread_mutex_lock(&diners_list->table->finish_mtx);
+			diners_list->table->finish_flag = true;
+			pthread_mutex_unlock(&diners_list->table->finish_mtx);
 			return (true);
 		}
 	}
@@ -63,22 +63,23 @@ bool	ph_finished_meals(t_diner *diners_list)
 	int	hw_mny_finshd_eating;
 	int	i;
 
-	if (diners_list[0].nbr_times_to_eat == -1)
+	if (diners_list->table->nbr_times_to_eat == -1)
 		return (false);
 	hw_mny_finshd_eating = 0;
 	i = -1;
 	while (++i < diners_list->table->phil_amnt)
 	{
-		pthread_mutex_lock(diners_list[i].eat_mtx);
-		if (diners_list[i].times_has_eaten >= diners_list[i].nbr_times_to_eat)
+		pthread_mutex_lock(&diners_list->table->eat_mtx);
+		if (diners_list[i].times_has_eaten
+			>= diners_list->table->nbr_times_to_eat)
 			hw_mny_finshd_eating++;
-		pthread_mutex_unlock(diners_list[i].eat_mtx);
+		pthread_mutex_unlock(&diners_list->table->eat_mtx);
 	}
 	if (hw_mny_finshd_eating == diners_list->table->phil_amnt)
 	{
-		pthread_mutex_lock(diners_list[0].finish_mtx);
-		*diners_list->finish_flag = 1;
-		pthread_mutex_unlock(diners_list[0].finish_mtx);
+		pthread_mutex_lock(&diners_list->table->finish_mtx);
+		diners_list->table->finish_flag = true;
+		pthread_mutex_unlock(&diners_list->table->finish_mtx);
 		return (true);
 	}
 	return (false);

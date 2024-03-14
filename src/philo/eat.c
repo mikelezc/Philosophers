@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:22:25 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/14 12:41:31 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/14 13:10:48 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,11 @@ void	ph_acquire_forks(t_diner *diner)
 void	ph_philo_eat(t_diner *diner)
 {
 	ph_acquire_forks(diner);
-	pthread_mutex_lock(diner->eat_mtx);
-	//diner->is_eating = true;
+	pthread_mutex_lock(&diner->table->eat_mtx);
 	ph_peter_says(diner->id, "is eating", diner);
 	diner->last_meal = ph_what_time_is_it();
 	diner->times_has_eaten++;
-	pthread_mutex_unlock(diner->eat_mtx);
+	pthread_mutex_unlock(&diner->table->eat_mtx);
 	ph_sleep(diner->table->t_eat);
 	diner->is_eating = false;
 	ph_release_forks(diner);

@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:28:47 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/14 12:42:13 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/14 13:11:03 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,10 @@ typedef struct s_diner
 {
 	int				id;
 	size_t			start_time;
-	size_t			t_sleep;
-	int				nbr_times_to_eat;
 	pthread_t		thread;
 	bool			is_eating;
 	int				times_has_eaten;
 	size_t			last_meal;
-	bool			*finish_flag;
-	pthread_mutex_t	*peter_says_mtx;
-	pthread_mutex_t	*finish_mtx;
-	pthread_mutex_t	*eat_mtx;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
 	int				forks;
@@ -77,7 +71,7 @@ typedef struct s_table
 	size_t			t_eat;
 	size_t			t_sleep;
 	int				nbr_times_to_eat;
-	bool			set_finish_flag;
+	bool			finish_flag;
 	pthread_mutex_t	finish_mtx;
 	pthread_mutex_t	eat_mtx;
 	pthread_mutex_t	peter_says_mtx;

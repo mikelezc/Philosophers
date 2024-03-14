@@ -14,13 +14,13 @@
 
 bool	ph_check_dinner_finish(t_diner *philo)
 {
-	pthread_mutex_lock(philo->finish_mtx);
-	if (*philo->finish_flag)
+	pthread_mutex_lock(&philo->table->finish_mtx);
+	if (philo->table->finish_flag)
 	{
-		pthread_mutex_unlock(philo->finish_mtx);
+		pthread_mutex_unlock(&philo->table->finish_mtx);
 		return (true);
 	}
-	pthread_mutex_unlock(philo->finish_mtx);
+	pthread_mutex_unlock(&philo->table->finish_mtx);
 	return (false);
 }
 
