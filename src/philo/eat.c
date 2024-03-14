@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:22:25 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/13 15:26:55 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:41:31 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	ph_philo_eat(t_diner *diner)
 	diner->last_meal = ph_what_time_is_it();
 	diner->times_has_eaten++;
 	pthread_mutex_unlock(diner->eat_mtx);
-	ph_sleep(diner->t_eat);
+	ph_sleep(diner->table->t_eat);
 	diner->is_eating = false;
 	ph_release_forks(diner);
 }

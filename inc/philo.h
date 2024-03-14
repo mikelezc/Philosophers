@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:28:47 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/13 15:31:26 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:42:13 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@
 
 # define ERR_TIME	"Error in function gettimeofday\n"
 
+# define ERR_MALLOC	"error when trying to allocate memory with malloc\n"
+
 //Limits
 # define TIME_LIM 60
 # define DINERS_LIM 200
@@ -51,9 +53,6 @@ typedef struct s_diner
 {
 	int				id;
 	size_t			start_time;
-	long int		phil_amnt;
-	size_t			t_die;
-	size_t			t_eat;
 	size_t			t_sleep;
 	int				nbr_times_to_eat;
 	pthread_t		thread;

@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:33:49 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/13 15:42:41 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:42:35 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	ph_put_forks(t_diner *diners_list, pthread_mutex_t *forks_pile)
 	int	i;
 
 	i = -1;
-	while (++i < diners_list->phil_amnt)
+	while (++i < diners_list->table->phil_amnt)
 	{
 		diners_list[i].r_fork = &forks_pile[i];
 		if (i == 0)
-			diners_list[i].l_fork = &forks_pile[diners_list[i].phil_amnt - 1];
+			diners_list[i].l_fork = &forks_pile[diners_list->table->phil_amnt - 1];
 		else
 			diners_list[i].l_fork = &forks_pile[i - 1];
 	}
@@ -36,9 +36,6 @@ void	ph_diners_take_seat(t_diner *diners_list, t_table *table)
 	{
 		diners_list[i].id = i + 1;
 		diners_list[i].start_time = ph_what_time_is_it();
-		diners_list[i].phil_amnt = table->phil_amnt;
-		diners_list[i].t_die = table->t_die;
-		diners_list[i].t_eat = table->t_eat;
 		diners_list[i].t_sleep = table->t_sleep;
 		diners_list[i].nbr_times_to_eat = table->nbr_times_to_eat;
 		diners_list[i].is_eating = false;
@@ -73,7 +70,7 @@ void	ph_set_scenario(t_table *table,
 	table->diners_list = malloc(sizeof(t_diner) * table->phil_amnt);
 	forks_pile = malloc(sizeof(forks_pile) * table->phil_amnt);
 	if (!table->shared_fork || !table->diners_list || !forks_pile)
-		ph_error_exit("ADIOS HAMIJOS");
+		ph_error_exit(ERR_MALLOC);
 	ph_mutex_init_table(forks_pile, table);
 	ph_diners_take_seat(table->diners_list, table);
 	ph_put_forks(table->diners_list, forks_pile);
