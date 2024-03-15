@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:18:48 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/13 15:11:28 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:48:07 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,8 @@ bool	ph_error_exit(char *msg)
 
 void	ph_clean_table(char *msg, t_table *table)
 {
-	int	i;
-
 	if (msg)
 		ph_error_exit(msg);
-	i = -1;
 	pthread_mutex_destroy(&table->peter_says_mtx);
 	pthread_mutex_destroy(&table->eat_mtx);
 	pthread_mutex_destroy(&table->finish_mtx);
