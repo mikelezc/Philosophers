@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:22:25 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/15 12:07:27 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/15 13:00:50 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ph_release_forks(t_diner *diner)
 	pthread_mutex_lock(right_fork);
 	diner->table->shared_fork[rf_place] = 0;
 	pthread_mutex_unlock(right_fork);
-	diner->forks = 0;
+	diner->owned_frks = 0;
 }
 
 void	ph_check_fork(t_diner *diner, pthread_mutex_t	*fork, int fork_place)
@@ -45,7 +45,7 @@ void	ph_check_fork(t_diner *diner, pthread_mutex_t	*fork, int fork_place)
 	if (diner->table->shared_fork[fork_place] == 0)
 	{
 		diner->table->shared_fork[fork_place] = 1;
-		diner->forks += 1;
+		diner->owned_frks += 1;
 		ph_peter_says(diner->id, "has taken a fork", diner);
 	}
 	pthread_mutex_unlock(fork);
@@ -69,7 +69,7 @@ void	ph_acquire_forks(t_diner *diner)
 		right_fork = diner->l_fork;
 		left_fork = diner->r_fork;
 	}
-	while (diner->forks < 2)
+	while (diner->owned_frks < 2)
 	{
 		ph_check_fork(diner, left_fork, lf_place);
 		ph_check_fork(diner, right_fork, rf_place);

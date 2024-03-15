@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:28:47 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/15 12:07:39 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/15 13:01:11 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct s_diner
 	size_t			last_meal;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
-	int				forks;
+	int				owned_frks;
 	t_table			*table;
 }					t_diner;
 

@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:33:49 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/14 16:46:02 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/15 13:01:52 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ph_diners_take_seat(t_diner *diners_list, t_table *table)
 		diners_list[i].times_has_eaten = 0;
 		diners_list[i].last_meal = ph_what_time_is_it();
 		diners_list[i].table = table;
-		diners_list[i].forks = 0;
+		diners_list[i].owned_frks = 0;
 	}
 }
 
