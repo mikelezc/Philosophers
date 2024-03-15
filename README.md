@@ -51,5 +51,9 @@ Segunda revisión general, limpieza y optimización del código.
 Limpio la copia de variables entre mis dos estructuras al haberlas enlazado mutuamente.
 Así evito redundancias en mis estructuras y las dejo lo más limpias posible.
 
+- 15 marzo 2024
+Pulido eat.c
+Experimento con diferentes valores como input de usleep para ganar velocidad.
+
 PD: Hello Amanda! 🖖🏻🖖🏻🖖🏻 xD
-(saluda si me encuentras :p) 
+(saluda si me encuentras) 
