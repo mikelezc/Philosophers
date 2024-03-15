@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:28:47 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/14 18:33:31 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/15 11:17:07 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,13 @@ void	ph_philo_sleep(t_diner *philo);
 bool	ph_check_dinner_finish(t_diner *philo);
 void	*ph_philo_actions(void *argmnts);
 
-/*//eat
+//eat
 void	ph_release_forks(t_diner *diner);
 void	ph_check_fork(t_diner *diner, pthread_mutex_t	*fork, int fork_place);
 void	ph_acquire_forks(t_diner *diner);
 void	ph_philo_eat(t_diner *philo);
-*/
 
+/*
 //eat
 void	ph_release_forks(t_diner *diner, pthread_mutex_t	*left_fork,
 			pthread_mutex_t	*right_fork);
@@ -121,7 +121,7 @@ void	ph_check_fork(t_diner *diner, pthread_mutex_t	*fork, int fork_place);
 void	ph_acquire_forks(t_diner *diner, pthread_mutex_t	*left_fork,
 			pthread_mutex_t	*right_fork);
 void	ph_philo_eat(t_diner *philo);
-
+*/
 //time
 int		ph_sleep(size_t msec);
 size_t	ph_what_time_is_it(void);

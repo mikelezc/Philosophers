@@ -6,12 +6,12 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:22:25 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/14 18:32:52 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/15 11:16:45 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/philo.h"
-/*
+
 void	ph_release_forks(t_diner *diner)
 {
 	pthread_mutex_t	*left_fork;
@@ -88,8 +88,8 @@ void	ph_philo_eat(t_diner *diner)
 	diner->is_eating = false;
 	ph_release_forks(diner);
 }
-*/
 
+/*
 void	ph_release_forks(t_diner *diner, pthread_mutex_t	*left_fork,
 		pthread_mutex_t	*right_fork)
 {
@@ -162,3 +162,4 @@ void	ph_philo_eat(t_diner *diner)
 	diner->is_eating = false;
 	ph_release_forks(diner, left_fork, right_fork);
 }
+*/
