@@ -56,5 +56,9 @@ Pulido eat.c
 Experimento con diferentes valores como input de usleep para ganar velocidad.
 Limpieza de finish.c
 
+- 16 marzo 2024
+Pruebas finales, pulido de algunas variables y eliminación de código innecesario.
+Listo para entrega!
+
 PD: Hello Amanda! 🖖🏻🖖🏻🖖🏻 xD
 (saluda si me encuentras) 
