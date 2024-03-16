@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:22:25 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/16 19:01:13 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/16 20:48:51 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,18 @@ void	ph_release_forks(t_diner *diner)
 {
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-	int				lf_id;
-	int				rf_id;
+	int				leave_first;
+	int				leave_second;
 
 	left_fork = diner->l_frk_mtx;
 	right_fork = diner->r_frk_mtx;
-	lf_id = diner->id - 1;
-	rf_id = diner->id % diner->table->phil_amnt;
+	leave_first = diner->id - 1;
+	leave_second = diner->id % diner->table->phil_amnt;
 	pthread_mutex_lock(left_fork);
-	diner->table->shared_fork[lf_id] = 0;
+	diner->table->shared_fork[leave_first] = 0;
 	pthread_mutex_unlock(left_fork);
 	pthread_mutex_lock(right_fork);
-	diner->table->shared_fork[rf_id] = 0;
+	diner->table->shared_fork[leave_second] = 0;
 	pthread_mutex_unlock(right_fork);
 	diner->owned_frks = 0;
 }
@@ -46,26 +46,26 @@ void	ph_check_fork(t_diner *diner, pthread_mutex_t	*fork, int fork_place)
 
 void	ph_acquire_forks(t_diner *diner)
 {
-	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*right_fork;
-	int				lf_id;
-	int				rf_id;
+	pthread_mutex_t	*first_fork;
+	pthread_mutex_t	*second_fork;
+	int				take_first;
+	int				take_second;
 
-	lf_id = diner->id - 1;
-	rf_id = diner->id % diner->table->phil_amnt;
-	left_fork = diner->l_frk_mtx;
-	right_fork = diner->r_frk_mtx;
+	take_first = diner->id - 1;
+	take_second = diner->id % diner->table->phil_amnt;
+	first_fork = diner->l_frk_mtx;
+	second_fork = diner->r_frk_mtx;
 	if (diner->id % 2 == 0)
 	{
-		rf_id = diner->id - 1;
-		lf_id = diner->id % diner->table->phil_amnt;
-		right_fork = diner->l_frk_mtx;
-		left_fork = diner->r_frk_mtx;
+		take_first = diner->id % diner->table->phil_amnt;
+		take_second = diner->id - 1;
+		first_fork = diner->r_frk_mtx;
+		second_fork = diner->l_frk_mtx;
 	}
 	while (diner->owned_frks < 2)
 	{
-		ph_check_fork(diner, left_fork, lf_id);
-		ph_check_fork(diner, right_fork, rf_id);
+		ph_check_fork(diner, first_fork, take_first);
+		ph_check_fork(diner, second_fork, take_second);
 	}
 }
 
