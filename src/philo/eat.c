@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:22:25 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/15 13:00:50 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/16 14:24:43 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,6 @@ void	ph_release_forks(t_diner *diner)
 	right_fork = diner->r_fork;
 	lf_place = diner->id - 1;
 	rf_place = diner->id % diner->table->phil_amnt;
-	if (diner->id % 2 == 0)
-	{
-		rf_place = diner->id - 1;
-		lf_place = diner->id % diner->table->phil_amnt;
-		right_fork = diner->l_fork;
-		left_fork = diner->r_fork;
-	}
 	pthread_mutex_lock(left_fork);
 	diner->table->shared_fork[lf_place] = 0;
 	pthread_mutex_unlock(left_fork);
