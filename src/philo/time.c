@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 21:19:34 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/15 17:48:58 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/16 19:07:35 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	ph_sleep(size_t msec)
 {
-	size_t	zero_t;
+	size_t	entry_time;
 
-	zero_t = ph_what_time_is_it();
-	while ((ph_what_time_is_it() - zero_t) < msec)
+	entry_time = ph_what_time_is_it();
+	while ((ph_what_time_is_it() - entry_time) < msec)
 		usleep(500);
 	return (0);
 }

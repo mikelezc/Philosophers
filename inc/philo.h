@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:28:47 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/15 13:01:11 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/16 18:19:04 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ typedef struct s_diner
 	bool			is_eating;
 	int				times_has_eaten;
 	size_t			last_meal;
-	pthread_mutex_t	*r_fork;
-	pthread_mutex_t	*l_fork;
+	pthread_mutex_t	*r_frk_mtx;
+	pthread_mutex_t	*l_frk_mtx;
 	int				owned_frks;
 	t_table			*table;
 }					t_diner;

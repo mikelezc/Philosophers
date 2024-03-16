@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:33:49 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/16 12:21:45 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/16 18:19:11 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	ph_put_forks(t_diner *diners_list, pthread_mutex_t *forks_pile)
 	i = -1;
 	while (++i < diners_list->table->phil_amnt)
 	{
-		diners_list[i].r_fork = &forks_pile[i];
+		diners_list[i].r_frk_mtx = &forks_pile[i];
 		if (i == 0)
-			diners_list[i].l_fork
+			diners_list[i].l_frk_mtx
 				= &forks_pile[diners_list->table->phil_amnt - 1];
 		else
-			diners_list[i].l_fork = &forks_pile[i - 1];
+			diners_list[i].l_frk_mtx = &forks_pile[i - 1];
 	}
 }
 
