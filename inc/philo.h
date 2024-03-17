@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:28:47 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/17 11:43:45 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/17 17:26:34 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,6 @@ bool	ph_finished_meals(t_diner *diners_list);
 void	*ph_p_ther(void *argmnts);
 
 //philo_actions
-void	ph_philo_think(t_diner *philo);
-void	ph_philo_sleep(t_diner *philo);
 bool	ph_check_dinner_finish(t_diner *philo);
 void	*ph_philo_actions(void *argmnts);
 

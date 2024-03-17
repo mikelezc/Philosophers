@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 13:58:36 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/17 15:17:58 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/17 17:18:39 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,10 @@ bool	ph_hasnt_eaten_on_time(t_diner *philo, size_t t_die)
 		pthread_mutex_unlock(&philo->table->eat_mtx);
 		return (true);
 	}
-	else
-	{
-		pthread_mutex_unlock(&philo->table->eat_mtx);
-		return (false);
-	}
+	pthread_mutex_unlock(&philo->table->eat_mtx);
+	return (false);
 }
+
 
 bool	ph_smone_hs_died(t_diner *diners_list)
 {
