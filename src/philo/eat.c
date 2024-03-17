@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:22:25 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/16 20:48:51 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/17 11:42:14 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ void	ph_release_forks(t_diner *diner)
 	diner->owned_frks = 0;
 }
 
-void	ph_check_fork(t_diner *diner, pthread_mutex_t	*fork, int fork_place)
+void	ph_check_fork(t_diner *diner, pthread_mutex_t	*fork, int take)
 {
 	pthread_mutex_lock(fork);
-	if (diner->table->shared_fork[fork_place] == 0)
+	if (diner->table->shared_fork[take] == 0)
 	{
-		diner->table->shared_fork[fork_place] = 1;
+		diner->table->shared_fork[take] = 1;
 		diner->owned_frks += 1;
 		ph_peter_says(diner->id, "has taken a fork", diner);
 	}

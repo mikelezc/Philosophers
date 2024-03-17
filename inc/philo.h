@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:28:47 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/16 18:19:04 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/17 11:42:42 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	*ph_philo_actions(void *argmnts);
 
 //eat
 void	ph_release_forks(t_diner *diner);
-void	ph_check_fork(t_diner *diner, pthread_mutex_t	*fork, int fork_place);
+void	ph_check_fork(t_diner *diner, pthread_mutex_t	*fork, int take);
 void	ph_acquire_forks(t_diner *diner);
 void	ph_philo_eat(t_diner *philo);
 
