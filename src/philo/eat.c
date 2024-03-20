@@ -6,7 +6,7 @@
 /*   By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:22:25 by mlezcano          #+#    #+#             */
-/*   Updated: 2024/03/17 11:42:14 by mlezcano         ###   ########.fr       */
+/*   Updated: 2024/03/20 22:48:58 by mlezcano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ph_acquire_forks(t_diner *diner)
 		first_fork = diner->r_frk_mtx;
 		second_fork = diner->l_frk_mtx;
 	}
-	while (diner->owned_frks < 2)
+	while (diner->owned_frks < 2 && !(ph_check_dinner_finish (diner)))
 	{
 		ph_check_fork(diner, first_fork, take_first);
 		ph_check_fork(diner, second_fork, take_second);
