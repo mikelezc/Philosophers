@@ -60,5 +60,16 @@ Limpieza de finish.c
 Pruebas finales, pulido de algunas variables y eliminación de código innecesario.
 Listo para entrega!
 
+- 20 marzo 2024
+Hoy he hecho mi primera corrección y todo ha salido bien.
+Sin embargo me he dado cuenta de un pequeño detalle repasando alguna cosa a posteriori.
+Cuando hay un comensal, el programa no salía porque faltaba la segunda comprobación de la condición del while de ph_acquire_forks.
+Es comprobar si mi bool me daba como que el comensal había terminado y así no se quedaba pillado al haber un comensal, puesto que en ese caso solo se maneja un tenedor. Un fallo tonto y casi imperceptible (ya que el programa realmente daba el resultado esperado con un comensal) pero que no quería dejar pasar por alto.
+He decidido cancelarlo y volver a presentarlo.
+
+
+
+
+
 PD: Hello Amanda! 🖖🏻🖖🏻🖖🏻 xD
 (saluda si me encuentras) 
