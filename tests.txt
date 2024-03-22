@@ -11,7 +11,14 @@ Examples:
 ./philo 4 310 200 100	One philosopher should die.
 
 Test with 2 philosophers and check the different times: a death delayed by more than 10 ms is unacceptable.
-Test with any values of your choice to verify all the requirements. Ensure philosophers die at the right time, that they don't steal forks, and so forth.
+
+./philo 2 800 200 200	No philosopher should die.
+./philo 2 401 200 200	No philosopher should die.
+./philo 2 400 200 200	One philosopher should die.
+
+Test with any values of your choice to verify all the requirements. 
+Ensure philosophers die at the right time, that they don't steal forks, and so forth.
+
 
 
 
