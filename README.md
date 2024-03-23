@@ -67,6 +67,10 @@ Cuando hay un comensal, el programa no salía porque faltaba la segunda comproba
 Es comprobar si mi bool me daba como que el comensal había terminado y así no se quedaba pillado al haber un comensal, puesto que en ese caso solo se maneja un tenedor. Un fallo tonto y casi imperceptible (ya que el programa realmente daba el resultado esperado con un comensal) pero que no quería dejar pasar por alto.
 He decidido cancelarlo y volver a presentarlo.
 
+- 23 marzo 2024
+He aprovechado estos días hasta que me deja hacer retry para seguir profundizando en diferentes tests. 
+También agrego un límite de hasta 200 comensales, y mínimo de 60 milisegundos en cada una de las acciones de los argumentos después de haber visto la hoja de correcciones.
+
 
 
 
