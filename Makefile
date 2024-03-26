@@ -6,7 +6,7 @@
 #    By: mlezcano <mlezcano@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/25 18:59:24 by mlezcano          #+#    #+#              #
-#    Updated: 2024/03/16 14:24:07 by mlezcano         ###   ########.fr        #
+#    Updated: 2024/03/23 20:13:01 by mlezcano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ SHELL		=	/bin/bash
 #compiler
 
 CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror -pthread -Ofast -O3 -march=native -g
+CFLAGS		= -Wall -Wextra -Werror -pthread -Ofast -O3 -march=native -g -fsanitize=thread -g3
 RM			= rm -f
 ECHO		= echo -e
 

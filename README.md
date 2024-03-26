@@ -71,9 +71,6 @@ He decidido cancelarlo y volver a presentarlo.
 He aprovechado estos días hasta que me deja hacer retry para seguir profundizando en diferentes tests. 
 También agrego un límite de hasta 200 comensales, y mínimo de 60 milisegundos en cada una de las acciones de los argumentos después de haber visto la hoja de correcciones.
 
+- 24 marzo 2024
 
-
-
-
-PD: Hello Amanda! 🖖🏻🖖🏻🖖🏻 xD
-(saluda si me encuentras) 
+Entrega finalizada
